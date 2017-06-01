@@ -1,0 +1,2 @@
+class LightingDirection < ApplicationRecord
+end
