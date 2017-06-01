@@ -62,3 +62,4 @@ gem 'email_validator'
 gem "slim-rails"
 gem 'bootstrap-sass'
 gem 'devise'
+gem 'rails_bootstrap_navbar'

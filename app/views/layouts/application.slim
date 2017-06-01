@@ -7,5 +7,28 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-  	.container
-      = yield
+    = navbar do
+      = navbar_header brand: 'My great app', brand_link: '/home'
+      = navbar_collapse do
+        = navbar_group class: 'foo', id: 'menu' do
+          = navbar_text 'Pick an option:'
+          = navbar_item "Home", '/'
+          = navbar_item "About Us", '/about-us'
+          = navbar_item '/contact' do
+            span.glyphicon.glyphicon-hand-right
+              | Contact Us!
+          = navbar_dropdown "Stuff" do
+            = navbar_dropdown_header 'Great stuff!'
+            = navbar_item "One", '/one'
+            = navbar_item "Two", '/two'
+            = navbar_item "Three", '/three'
+            - if true # check if user is admin, maybe like "if current_user.try(:admin?)"
+              = navbar_dropdown_divider
+              = navbar_item "Admin Dashboard", '/admin'
+              = navbar_item "Users", '/admin/users'
+        = navbar_group align: 'right' do
+          - if true # check if user is logged in, maybe like "if current_user.present?"
+            = navbar_item "Log Out", '/logout'
+          - else
+            = navbar_item "Log In", '/login'
+    = yield
