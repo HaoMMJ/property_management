@@ -27,8 +27,7 @@ ActiveRecord::Schema.define(version: 20170601013725) do
   end
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "name"
-    t.integer "prefecture_id"
+    t.string "name"
   end
 
   create_table "contracts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -82,10 +81,6 @@ ActiveRecord::Schema.define(version: 20170601013725) do
     t.datetime "applied_on"
     t.integer  "money"
     t.string   "content"
-  end
-
-  create_table "prefectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
   end
 
   create_table "progresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
