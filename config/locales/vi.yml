@@ -39,4 +39,12 @@ vi:
   wood_flooring: "Sàn gỗ"
   cooking_equipment: "Hệ thống tủ bếp, máy hút mùi, bồn rửa"
   chandeliers: "Đèn chùm"
+  name: "Tên"
+  id_card: "Chứng minh nhân dân"
+  tel: "Số điện thoại"
+  email: "Email"
+  search: "Tìm kiếm"
+  add_new: "Thêm mới"
+  search_result: "Kết quả tìm kiếm"
+
 

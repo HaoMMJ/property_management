@@ -1,0 +1,23 @@
+.row
+  .col-sm-3.col-md-2.sidebar.search-form
+    form
+      .form-group
+        label for='test' #{I18n.t('id_card')}
+        input type='text' name='test' id='test' class='form-control'
+      .form-group
+        label for='test' #{I18n.t('name')}
+        input type='text' name='test' id='test' class='form-control'
+      .form-group
+        label for='test' #{I18n.t('tel')}
+        input type='text' name='test' id='test' class='form-control'
+      .form-group
+        label for='test' #{I18n.t('email')}
+        input type='text' name='test' id='test' class='form-control'
+      .form-group
+        button class="btn btn-info" id='search' #{I18n.t('search')}
+  .col-sm-12.col-sm-offset-0.col-md-10.col-md-offset-2.main
+    button.btn.btn-secondary #{I18n.t('add_new')}
+    div
+      .pull-xs-left
+        h3 #{I18n.t('search_result')}
+    .table-responsive

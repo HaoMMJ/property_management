@@ -7,20 +7,22 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    = navbar do
-      = navbar_header brand: "#{I18n.t('property_management')}", brand_link: '/#'
-      = navbar_collapse do
-        = navbar_group class: 'foo', id: 'menu' do
-          = navbar_item "#{I18n.t('statistic')}", '/'
-          = navbar_dropdown "#{I18n.t('property')}" do
-            = navbar_item "#{I18n.t('building')}", '/one'
-            = navbar_item "#{I18n.t('room')}", '/one'
-            = navbar_item "#{I18n.t('equipment')}", '/one'
-          = navbar_item "#{I18n.t('contract')}", '/contract'
-          = navbar_item "#{I18n.t('customer')}", '/customer'
-        = navbar_group align: 'right' do
-          - if true # check if user is logged in, maybe like "if current_user.present?"
-            = navbar_item "Log Out", '/logout'
-          - else
-            = navbar_item "Log In", '/login'
-    = yield
+    - if current_user.present?
+      = navbar do
+        = navbar_header brand: "#{I18n.t('property_management')}", brand_link: '/#'
+        = navbar_collapse do
+          = navbar_group class: 'foo', id: 'menu' do
+            = navbar_item "#{I18n.t('statistic')}", '/'
+            = navbar_dropdown "#{I18n.t('property')}" do
+              = navbar_item "#{I18n.t('building')}", '/one'
+              = navbar_item "#{I18n.t('room')}", '/one'
+              = navbar_item "#{I18n.t('equipment')}", '/one'
+            = navbar_item "#{I18n.t('contract')}", '/contract'
+            = navbar_item "#{I18n.t('customer')}", '/customers'
+          = navbar_group align: 'right' do
+            - if true # check if user is logged in, maybe like "if current_user.present?"
+              = navbar_item "Log Out", '/logout'
+            - else
+              = navbar_item "Log In", '/login'
+    .container-fluid        
+      = yield

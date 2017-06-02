@@ -62,3 +62,9 @@ Equipment.create(name: "#{I18n.t('air_conditioner')}", brand_name: "Panasonic")
 Equipment.create(name: "#{I18n.t('wood_flooring')}", brand_name: "")
 Equipment.create(name: "#{I18n.t('cooking_equipment')}", brand_name: "")
 Equipment.create(name: "#{I18n.t('chandeliers')}", brand_name: "")
+
+user = User.new
+user.email = 'admin@email.com'
+user.password = '123456'
+user.password_confirmation = '123456'
+user.save
