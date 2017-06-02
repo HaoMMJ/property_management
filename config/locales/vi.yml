@@ -45,6 +45,14 @@ vi:
   email: "Email"
   search: "Tìm kiếm"
   add_new: "Thêm mới"
+  add: "Thêm"
+  add_customer: "Thêm khách hàng"
   search_result: "Kết quả tìm kiếm"
+  close: "Đóng"
+  birthday: "Ngày sinh"
+  birth_place: "Nơi sinh"
+  issued_by: "Nơi cấp"
+  issued_on: "Ngày cấp"
+  address: "Địa chỉ"
 
 

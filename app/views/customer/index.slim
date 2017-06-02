@@ -16,7 +16,45 @@
       .form-group
         button class="btn btn-info" id='search' #{I18n.t('search')}
   .col-sm-12.col-sm-offset-0.col-md-10.col-md-offset-2.main
-    button.btn.btn-secondary #{I18n.t('add_new')}
+    button.btn.btn-info data-toggle="modal" data-target="#addNewModal" #{I18n.t('add_new')}
+
+    #addNewModal.modal.fade role='dialog'
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close data-dismiss="modal" &times;
+            h4.modal-title #{I18n.t('add_customer')}
+          .modal-body
+            .form-group
+              label for='test' #{I18n.t('name')}
+              input type='text' name='test' id='test' class='form-control'
+            .form-group
+              label for='test' #{I18n.t('birthday')}
+              input type='text' name='test' id='test' class='form-control'
+            .form-group
+              label for='test' #{I18n.t('birth_place')}
+              input type='text' name='test' id='test' class='form-control'
+            .form-group
+              label for='test' #{I18n.t('id_card')}
+              input type='text' name='test' id='test' class='form-control'
+            .form-group
+              label for='test' #{I18n.t('issued_by')}
+              input type='text' name='test' id='test' class='form-control'
+            .form-group
+              label for='test' #{I18n.t('issued_on')}
+              input type='text' name='test' id='test' class='form-control'
+            .form-group
+              label for='test' #{I18n.t('tel')}
+              input type='text' name='test' id='test' class='form-control'
+            .form-group
+              label for='test' #{I18n.t('address')}
+              input type='text' name='test' id='test' class='form-control'
+            .form-group
+              label for='test' #{I18n.t('email')}
+              input type='text' name='test' id='test' class='form-control'
+          .modal-footer
+            button.btn.btn-info #{I18n.t('add')}
+            button.btn.btn-default data-dismiss="modal" #{I18n.t('close')}
     div
       .pull-xs-left
         h3 #{I18n.t('search_result')}
