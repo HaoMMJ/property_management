@@ -1,3 +1,5 @@
+= javascript_include_tag "customer"
+
 .row
   .col-sm-3.col-md-2.sidebar.search-form
     form
@@ -30,7 +32,7 @@
               input type='text' name='test' id='test' class='form-control'
             .form-group
               label for='test' #{I18n.t('birthday')}
-              input type='text' name='test' id='test' class='form-control'
+              input type='text' name='test' id='test' class='form-control' data-provide='datepicker'
             .form-group
               label for='test' #{I18n.t('birth_place')}
               input type='text' name='test' id='test' class='form-control'
@@ -42,7 +44,7 @@
               input type='text' name='test' id='test' class='form-control'
             .form-group
               label for='test' #{I18n.t('issued_on')}
-              input type='text' name='test' id='test' class='form-control'
+              input type='text' name='test' id='test' class='form-control' data-provide='datepicker'
             .form-group
               label for='test' #{I18n.t('tel')}
               input type='text' name='test' id='test' class='form-control'

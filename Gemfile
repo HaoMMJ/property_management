@@ -63,3 +63,4 @@ gem "slim-rails"
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'rails_bootstrap_navbar'
+gem 'bootstrap-datepicker-rails'
