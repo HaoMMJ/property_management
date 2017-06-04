@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root to: 'property_management#index'
 
   get 'customers', to: 'customer#index'
+  post 'customer/create', to: 'customer#create'
 end
