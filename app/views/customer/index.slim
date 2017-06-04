@@ -61,4 +61,32 @@
     div
       .pull-xs-left
         h3 #{I18n.t('search_result')}
+      .pull-xs-right
+        = will_paginate @customers, renderer: BootstrapPagination::Rails
     .table-responsive
+      table.table.table-bordered.table-striped.table-hover.searchresult
+        thead
+          tr
+            th #{I18n.t('name')}
+            th #{I18n.t('birthday')}
+            th #{I18n.t('birth_place')}
+            th #{I18n.t('id_card')}
+            th #{I18n.t('tel')}
+            th #{I18n.t('email')}
+            th style="width: 144px;"
+        tbody
+          - if @customers.length > 0
+            - @customers.each do |c|
+              tr
+                td #{c.name}
+                td #{c.maybe.birthday.strftime("%d/%m/%Y").end}
+                td #{c.birth_place}
+                td #{c.id_card}
+                td #{c.tel}
+                td #{c.email}
+                td
+                  button.btn.btn-info data-toggle="modal" data-target="#updateCustomerModal" customer-id="#{c.id}" #{I18n.t('detail')}
+                  button#delete_customer.btn.btn-secondary #{I18n.t('delete')}
+          - else
+            tr
+              td.centered colspan=7 #{I18n.t('not_found')}

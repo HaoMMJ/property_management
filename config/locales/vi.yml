@@ -1,4 +1,7 @@
 vi:
+  will_paginate:
+    previous_label: "&#8592;"
+    next_label: "&#8594;"
   property_management: "Quản lý bất động sản"
   statistic: "Thống kê"
   property: "Bất động sản"
@@ -54,5 +57,8 @@ vi:
   issued_by: "Nơi cấp"
   issued_on: "Ngày cấp"
   address: "Địa chỉ"
+  not_found: "Không tìm thấy kết quả"
+  detail: "Chi tiết"
+  delete: "Xóa"
 
 
