@@ -11,6 +11,7 @@ class CreateCustomer < ActiveRecord::Migration[5.0]
       t.string :address
       t.string :occupation
       t.string :email
+      t.boolean :is_deleted, default: false
     end
   end
 end

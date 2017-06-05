@@ -13,7 +13,8 @@
 ActiveRecord::Schema.define(version: 20170601013725) do
 
   create_table "building_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
+    t.string  "name"
+    t.boolean "is_deleted", default: false
   end
 
   create_table "buildings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -24,10 +25,12 @@ ActiveRecord::Schema.define(version: 20170601013725) do
     t.date    "built_on"
     t.string  "building_status"
     t.integer "payment_plan_id"
+    t.boolean "is_deleted",       default: false
   end
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
+    t.string  "name"
+    t.boolean "is_deleted", default: false
   end
 
   create_table "contracts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -35,29 +38,33 @@ ActiveRecord::Schema.define(version: 20170601013725) do
     t.integer "customer_id"
     t.integer "progress_id"
     t.string  "current_status"
+    t.boolean "is_deleted",     default: false
   end
 
   create_table "customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
-    t.date   "birthday"
-    t.string "birth_place"
-    t.string "id_card"
-    t.string "issued_by"
-    t.date   "issued_on"
-    t.string "tel"
-    t.string "address"
-    t.string "occupation"
-    t.string "email"
+    t.string  "name"
+    t.date    "birthday"
+    t.string  "birth_place"
+    t.string  "id_card"
+    t.string  "issued_by"
+    t.date    "issued_on"
+    t.string  "tel"
+    t.string  "address"
+    t.string  "occupation"
+    t.string  "email"
+    t.boolean "is_deleted",  default: false
   end
 
   create_table "districts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string  "name"
     t.integer "city_id"
+    t.boolean "is_deleted", default: false
   end
 
   create_table "equipment", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
-    t.string "brand_name"
+    t.string  "name"
+    t.string  "brand_name"
+    t.boolean "is_deleted", default: false
   end
 
   create_table "layouts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -66,14 +73,17 @@ ActiveRecord::Schema.define(version: 20170601013725) do
     t.integer "number_of_living_rooms"
     t.integer "number_of_kitchens"
     t.integer "number_of_dinning_rooms"
+    t.boolean "is_deleted",              default: false
   end
 
   create_table "lighting_directions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
+    t.string  "name"
+    t.boolean "is_deleted", default: false
   end
 
   create_table "payment_plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
+    t.string  "name"
+    t.boolean "is_deleted", default: false
   end
 
   create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -81,6 +91,7 @@ ActiveRecord::Schema.define(version: 20170601013725) do
     t.datetime "applied_on"
     t.integer  "money"
     t.string   "content"
+    t.boolean  "is_deleted",  default: false
   end
 
   create_table "progresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -89,6 +100,7 @@ ActiveRecord::Schema.define(version: 20170601013725) do
     t.string  "note"
     t.float   "payment_amount",  limit: 24
     t.integer "payment_plan_id"
+    t.boolean "is_deleted",                 default: false
   end
 
   create_table "rooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -103,6 +115,7 @@ ActiveRecord::Schema.define(version: 20170601013725) do
     t.date    "opened_at"
     t.integer "price"
     t.date    "price_change_at"
+    t.boolean "is_deleted",                       default: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

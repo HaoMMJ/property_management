@@ -8,6 +8,7 @@ class CreateBuilding < ActiveRecord::Migration[5.0]
       t.date    :built_on
       t.string  :building_status
       t.integer :payment_plan_id
+      t.boolean :is_deleted, default: false
     end
   end
 end

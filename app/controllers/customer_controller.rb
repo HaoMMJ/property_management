@@ -1,7 +1,7 @@
 class CustomerController < ApplicationController
   def index
     page = params[:page] || 1
-    @customers = Customer.paginate(:page => page, :per_page => 1)
+    @customers = Customer.active.paginate(:page => page, :per_page => 20)
   end
 
   def create
@@ -12,7 +12,27 @@ class CustomerController < ApplicationController
     end
   end
 
-  def delete
+  def show
+  end
+
+  def update
+    binding.pry
+  end
+
+  def destroy
+    customer = Customer.find(params['id'].to_i)
+    if customer.present?
+      customer.is_deleted = true
+      customer.save
+    end
+    respond_to do |format|
+      format.json  { render json: {deleted: "success"} , status: 200 }
+    end
+
+    # respond_to do |format|
+    #   format.html {redirect_to customer_url(id: params[:id])}
+    #   format.js 
+    # end
   end
 
   private

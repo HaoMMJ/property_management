@@ -85,8 +85,10 @@
                 td #{c.tel}
                 td #{c.email}
                 td
-                  button.btn.btn-info data-toggle="modal" data-target="#updateCustomerModal" customer-id="#{c.id}" #{I18n.t('detail')}
-                  button#delete_customer.btn.btn-secondary #{I18n.t('delete')}
+                  button.updateCustomer.btn.btn-info customer-id="#{c.id}" #{I18n.t('detail')}
+
+                  = link_to customer_path(c.id), remote: true, method: :delete,  data: { confirm: 'Are you sure?' }, class: 'delete_customer' do
+                    button.btn.btn-secondary #{I18n.t('delete')}
           - else
             tr
               td.centered colspan=7 #{I18n.t('not_found')}

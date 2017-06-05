@@ -6,6 +6,7 @@ class CreateLayout < ActiveRecord::Migration[5.0]
       t.integer :number_of_living_rooms
       t.integer :number_of_kitchens
       t.integer :number_of_dinning_rooms
+      t.boolean :is_deleted, default: false
     end
   end
 end

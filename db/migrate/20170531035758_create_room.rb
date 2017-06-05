@@ -12,6 +12,7 @@ class CreateRoom < ActiveRecord::Migration[5.0]
       t.date    :opened_at
       t.integer :price
       t.date    :price_change_at
+      t.boolean :is_deleted, default: false
     end
   end
 end

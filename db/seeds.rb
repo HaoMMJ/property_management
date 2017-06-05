@@ -68,3 +68,20 @@ user.email = 'admin@email.com'
 user.password = '123456'
 user.password_confirmation = '123456'
 user.save
+
+#Create Random data
+1.upto(100) do |i|
+  city = City.offset(rand(City.count)).first.name
+  birthday = Date.today - rand(20..60).years - rand(1..365).days
+  Customer.create(
+    name: "Nguyen Van #{i}",
+    birthday: birthday,
+    birth_place: city,
+    id_card: "0"+rand(100000000..1000000000).to_s,
+    issued_by: "CA TP #{city}",
+    issued_on: birthday + 18.years + rand(1..365).days,
+    tel: "0"+rand(100000000..1000000000).to_s,
+    occupation: ["cong chuc nha nuoc", "nhan vien van phong", "kinh doanh", "lao dong tu do"].sample,
+    email: "email_#{i}@email.com"
+  )
+end

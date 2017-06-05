@@ -5,6 +5,7 @@ class CreateContract < ActiveRecord::Migration[5.0]
       t.integer :customer_id
       t.integer :progress_id
       t.string  :current_status
+      t.boolean :is_deleted, default: false
     end
   end
 end
