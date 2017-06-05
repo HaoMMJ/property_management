@@ -18,16 +18,6 @@ $(function () {
     // console.log($(this).attr('customer-id'))
   });
 
-  // $(".delete_customer").click(function(){
-  //   // console.log($(this));
-  //   var customer_id = $(this).attr('customer-id');
-  //   var data = {}
-  //   data.customer_id = customer_id;
-  //   $.post( "customer/delete", data ).done(function(result){
-  //     console.log("delete");
-  //     location.reload();
-  //   });
-  // });
   $('.delete_customer').bind('ajax:success', function() {  
     $(this).closest('tr').fadeOut();
   });  

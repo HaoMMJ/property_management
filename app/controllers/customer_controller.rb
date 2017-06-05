@@ -1,7 +1,8 @@
 class CustomerController < ApplicationController
   def index
     page = params[:page] || 1
-    @customers = Customer.active.paginate(:page => page, :per_page => 20)
+    @q = Customer.active.ransack(params[:q])
+    @customers = @q.result.paginate(:page => page, :per_page => 20)
   end
 
   def create
