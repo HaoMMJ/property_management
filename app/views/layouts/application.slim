@@ -20,9 +20,7 @@ html
             = navbar_item "#{I18n.t('contract')}", '/contract'
             = navbar_item "#{I18n.t('customer')}", '/customers'
           = navbar_group align: 'right' do
-            - if true # check if user is logged in, maybe like "if current_user.present?"
-              = navbar_item "Log Out", '/logout'
-            - else
-              = navbar_item "Log In", '/login'
+            li
+              = link_to('Log out', destroy_user_session_path, :method => :delete)
     .container-fluid        
       = yield
