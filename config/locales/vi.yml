@@ -60,5 +60,8 @@ vi:
   not_found: "Không tìm thấy kết quả"
   detail: "Chi tiết"
   delete: "Xóa"
+  kind: "Loại"
+  done: "Đã hoàn thành"
+  in_construction: "Đang xây dựng"
 
 

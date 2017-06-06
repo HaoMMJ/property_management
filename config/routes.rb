@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   get 'customers', to: 'customer#index'
   resources :customer
   post 'customer/create', to: 'customer#create'
+
+  get 'rooms', to: 'room#index'
 end

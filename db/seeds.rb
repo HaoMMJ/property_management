@@ -10,6 +10,10 @@
 BuildingType.create(name: "#{I18n.t('villa')}")
 BuildingType.create(name: "#{I18n.t('apartment')}")
 
+PaymentPlan.create(name: "#{I18n.t('kind')} 1")
+PaymentPlan.create(name: "#{I18n.t('kind')} 2")
+
+
 City.create(name: "#{I18n.t('hanoi')}")
 hanoi_id = City.last.id
 District.create(name: "#{I18n.t('hoankiem')}", city_id: hanoi_id)
@@ -71,17 +75,94 @@ user.save
 
 #Create Random data
 1.upto(100) do |i|
-  city = City.offset(rand(City.count)).first.name
+  district = District.offset(rand(District.count)).first
   birthday = Date.today - rand(20..60).years - rand(1..365).days
   Customer.create(
     name: "Nguyen Van #{i}",
     birthday: birthday,
-    birth_place: city,
+    birth_place: "#{district.name} #{district.city.name}",
     id_card: "0"+rand(100000000..1000000000).to_s,
-    issued_by: "CA TP #{city}",
+    issued_by: "CA TP #{district.city.name}",
     issued_on: birthday + 18.years + rand(1..365).days,
     tel: "0"+rand(100000000..1000000000).to_s,
     occupation: ["cong chuc nha nuoc", "nhan vien van phong", "kinh doanh", "lao dong tu do"].sample,
     email: "email_#{i}@email.com"
   )
 end
+
+
+statuses = ["#{I18n.t('done')}", "#{I18n.t('in_construction')}"]
+room_states = ["available", "applied" ,"sold"]
+room_index = 1
+
+#Create Random data
+0.upto(20) do |i|
+  district = District.offset(rand(District.count)).first
+  built_on = Date.today - rand(100..1000).days
+  group = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  building_status = statuses[rand(0..1)]
+  payment_plan_id = (building_status == "#{I18n.t('in_construction')}") ? PaymentPlan.first.id : PaymentPlan.last.id
+  building_type = BuildingType.offset(i%2).first
+  is_villa = building_type.name == "#{I18n.t('villa')}"
+  num_floors = is_villa ? rand(2..5) : rand(10..30)
+
+  building = Building.create(
+    name: "#{group[i]}",
+    building_type_id: building_type.id,
+    district_id: district.id,
+    address: "#{rand(1..100)} #{group[i]} #{district.name} #{district.city.name}",
+    built_on: built_on,
+    building_status: building_status,
+    payment_plan_id: payment_plan_id,
+    num_floors: num_floors
+  )
+
+  open_at = Time.zone.now - rand(10..365).days
+  if is_villa
+    space = rand(150..500)
+    price = space * rand(20..35)
+    
+    Room.create(
+      building_id: building.id,
+      room_no: room_index,
+      room_status: building_status,
+      state: room_states[rand(0..2)],
+      lighting_direction_id: LightingDirection.offset(rand(LightingDirection.count)).first.id,
+      layout_id: Layout.last.id,
+      floor: 1,
+      space: space,
+      available_on: open_at + rand(-5..5).days,
+      opened_at: open_at,
+      price: "#{price}000000",
+      price_change_at: open_at
+    )
+    room_index += 1
+  else
+    num_rooms = rand(3..6) * num_floors
+    in_construction = building_status == "#{I18n.t('in_construction')}"
+    percent_complete = (rand(0.0..1.0) * num_rooms).to_i
+    price_per_square_metters = rand(20..35)
+    
+    1.upto(num_rooms) do |j|
+      room_status = (j < percent_complete) ? "#{I18n.t('done')}" : "#{I18n.t('in_construction')}"
+      state = in_construction ? ["available", "applied"].sample : room_states.sample
+      space = rand(45..130)
+      Room.create(
+        building_id: building.id,
+        room_no: room_index,
+        room_status: room_status,
+        state: state,
+        lighting_direction_id: LightingDirection.offset(rand(LightingDirection.count)).first.id,
+        layout_id: Layout.offset(rand(Layout.count)).first.id,
+        floor: (j/(num_rooms/num_floors)),
+        space: space,
+        available_on: open_at + rand(-5..5).days,
+        opened_at: open_at, 
+        price: "#{price_per_square_metters * space}000000",
+        price_change_at: open_at
+      )
+      room_index += 1
+    end
+  end
+end
+

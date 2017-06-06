@@ -20,12 +20,13 @@ ActiveRecord::Schema.define(version: 20170601013725) do
   create_table "buildings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string  "name"
     t.integer "building_type_id"
-    t.integer "city_id"
+    t.integer "district_id"
     t.string  "address"
     t.date    "built_on"
     t.string  "building_status"
-    t.integer "payment_plan_id"
     t.boolean "is_deleted",       default: false
+    t.integer "num_floors"
+    t.integer "payment_plan_id"
   end
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -39,6 +40,7 @@ ActiveRecord::Schema.define(version: 20170601013725) do
     t.integer "progress_id"
     t.string  "current_status"
     t.boolean "is_deleted",     default: false
+    t.date    "applied_on"
   end
 
   create_table "customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -107,13 +109,14 @@ ActiveRecord::Schema.define(version: 20170601013725) do
     t.integer "building_id"
     t.string  "room_no"
     t.string  "room_status"
+    t.string  "state"
     t.integer "lighting_direction_id"
     t.integer "layout_id"
     t.integer "floor"
     t.float   "space",                 limit: 24
     t.date    "available_on"
     t.date    "opened_at"
-    t.integer "price"
+    t.string  "price"
     t.date    "price_change_at"
     t.boolean "is_deleted",                       default: false
   end

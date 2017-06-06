@@ -14,9 +14,8 @@ html
           = navbar_group class: 'foo', id: 'menu' do
             = navbar_item "#{I18n.t('statistic')}", '/'
             = navbar_dropdown "#{I18n.t('property')}" do
-              = navbar_item "#{I18n.t('building')}", '/one'
-              = navbar_item "#{I18n.t('room')}", '/one'
-              = navbar_item "#{I18n.t('equipment')}", '/one'
+              = navbar_item "#{I18n.t('building')}", '/buildings'
+              = navbar_item "#{I18n.t('room')}", '/rooms'
             = navbar_item "#{I18n.t('contract')}", '/contract'
             = navbar_item "#{I18n.t('customer')}", '/customers'
           = navbar_group align: 'right' do
