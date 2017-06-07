@@ -94,7 +94,7 @@ end
 
 
 statuses = ["#{I18n.t('done')}", "#{I18n.t('in_construction')}"]
-room_states = ["available", "applied" ,"sold"]
+room_states = ["#{I18n.t('available')}", "#{I18n.t('applied')}" ,"#{I18n.t('sold')}"]
 room_index = 1
 
 #Create Random data

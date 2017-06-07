@@ -1,9 +1,9 @@
 class RoomController < ApplicationController
-  # def index
-  #   page = params[:page] || 1
-  #   @q = Customer.active.ransack(params[:q])
-  #   @customers = @q.result.paginate(:page => page, :per_page => 20)
-  # end
+  def index
+    page = params[:page] || 1
+    @q = Room.active.ransack(params[:q])
+    @rooms = @q.result.paginate(:page => page, :per_page => 20)
+  end
 
   # def create
   #   customer = Customer.new(customer_params)
