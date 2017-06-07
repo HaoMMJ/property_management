@@ -7,5 +7,11 @@ Rails.application.routes.draw do
   resources :customer
   post 'customer/create', to: 'customer#create'
 
+  get 'buildings', to: 'building#index'
+  resources :building
+  post 'building/create', to: 'building#create'
+
   get 'rooms', to: 'room#index'
+  resources :room
+  post 'room/create', to: 'room#create'
 end

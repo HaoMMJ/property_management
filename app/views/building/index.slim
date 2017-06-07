@@ -1,4 +1,4 @@
-= javascript_include_tag "customer"
+= javascript_include_tag "building"
 
 .row
   .col-sm-3.col-md-2.sidebar.search-form
@@ -7,54 +7,42 @@
         label for='name' #{I18n.t('name')}
         = f.search_field :name_cont, class: 'form-control'
       .form-group
-        label for='id_card' #{I18n.t('id_card')}
-        = f.search_field :id_card_cont, class: 'form-control'
-      .form-group
-        label for='tel' #{I18n.t('tel')}
-        = f.search_field :tel_cont, class: 'form-control'
-      .form-group
-        label for='email' #{I18n.t('email')}
-        = f.search_field :email_cont, class: 'form-control'
+        label for='address' #{I18n.t('address')}
+        = f.search_field :address_cont, class: 'form-control'
       .form-group
         = f.submit "#{I18n.t('search')}", class: "btn btn-info"
   .col-sm-12.col-sm-offset-0.col-md-10.col-md-offset-2.main
     button.btn.btn-info data-toggle="modal" data-target="#addNewModal" #{I18n.t('add_new')}
 
-    = form_tag(customer_create_path, id: 'add_customer_form') do |f|
+    = form_tag(building_create_path, id: 'add_building_form') do |f|
       #addNewModal.modal.fade role='dialog'
         .modal-dialog
           .modal-content
             .modal-header
               button.close data-dismiss="modal" &times;
-              h4.modal-title #{I18n.t('add_customer')}
+              h4.modal-title #{I18n.t('add_building')}
             .modal-body
               .form-group
                 label for='name' #{I18n.t('name')}
                 = text_field_tag(:name, nil, class: 'form-control')
               .form-group
-                label for='birthday' #{I18n.t('birthday')}
-                = text_field_tag(:birthday, nil, {class: 'form-control', "data-provide" => 'datepicker'})
+                label for='building_type_id' #{I18n.t('building_type_id')}
+                = text_field_tag(:building_type_id, nil, class: 'form-control')
               .form-group
-                label for='birth_place' #{I18n.t('birth_place')}
-                = text_field_tag(:birth_place, nil, class: 'form-control')
+                label for='city_id' #{I18n.t('city_id')}
+                = text_field_tag(:city_id, nil, class: 'form-control')
               .form-group
-                label for='id_card' #{I18n.t('id_card')}
-                = text_field_tag(:id_card, nil, class: 'form-control')
-              .form-group
-                label for='issued_by' #{I18n.t('issued_by')}
-                = text_field_tag(:issued_by, nil, class: 'form-control')
-              .form-group
-                label for='issued_on' #{I18n.t('issued_on')}
-                = text_field_tag(:issued_on, nil, {class: 'form-control', "data-provide" => 'datepicker'})
-              .form-group
-                label for='tel' #{I18n.t('tel')}
-                = text_field_tag(:tel, nil, class: 'form-control')
+                label for='district_id' #{I18n.t('district_id')}
+                = text_field_tag(:district_id, nil, class: 'form-control') 
               .form-group
                 label for='address' #{I18n.t('address')}
                 = text_field_tag(:address, nil, class: 'form-control')
               .form-group
-                label for='email' #{I18n.t('email')}
-                = text_field_tag(:email, nil, class: 'form-control')
+                label for='building_status' #{I18n.t('building_status')}
+                = text_field_tag(:building_status, nil, class: 'form-control')
+              .form-group
+                label for='payment_plan' #{I18n.t('payment_plan')}
+                = text_field_tag(:payment_plan, nil, class: 'form-control')
             .modal-footer
               = submit_tag "#{I18n.t('add')}", class: 'btn btn-info'
               button.btn.btn-default data-dismiss="modal" #{I18n.t('close')}
@@ -62,32 +50,32 @@
       .pull-xs-left
         h3 #{I18n.t('search_result')}
       .pull-xs-right
-        = will_paginate @customers, renderer: BootstrapPagination::Rails
+        = will_paginate @buildings, renderer: BootstrapPagination::Rails
     .table-responsive
       table.table.table-bordered.table-striped.table-hover.searchresult
         thead
           tr
             th #{I18n.t('name')}
-            th #{I18n.t('birthday')}
-            th #{I18n.t('birth_place')}
-            th #{I18n.t('id_card')}
-            th #{I18n.t('tel')}
-            th #{I18n.t('email')}
+            th #{I18n.t('kind')}
+            th #{I18n.t('address')}
+            th #{I18n.t('built_on')}
+            th #{I18n.t('building_status')}
+            th #{I18n.t('num_floors')}
             th style="width: 144px;"
         tbody
-          - if @customers.length > 0
-            - @customers.each do |c|
+          - if @buildings.length > 0
+            - @buildings.each do |c|
               tr
                 td #{c.name}
-                td #{c.maybe.birthday.strftime("%d/%m/%Y").end}
-                td #{c.birth_place}
-                td #{c.id_card}
-                td #{c.tel}
-                td #{c.email}
+                td #{c.building_type.name}
+                td #{c.address}
+                td #{c.built_on}
+                td #{c.building_status}
+                td #{c.num_floors}
                 td
-                  button.updateCustomer.btn.btn-info customer-id="#{c.id}" #{I18n.t('detail')}
+                  button.updateBuidling.btn.btn-info building-id="#{c.id}" #{I18n.t('detail')}
 
-                  = link_to customer_path(c.id), remote: true, method: :delete,  data: { confirm: 'Are you sure?' }, class: 'delete_customer' do
+                  = link_to building_path(c.id), remote: true, method: :delete,  data: { confirm: 'Are you sure?' }, class: 'delete_building' do
                     button.btn.btn-secondary #{I18n.t('delete')}
           - else
             tr
