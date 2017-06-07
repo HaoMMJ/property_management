@@ -33,17 +33,17 @@ District.create(name: "#{I18n.t('thanhtri')}", city_id: hanoi_id)
 
 City.create(name: "#{I18n.t('hcm')}")
 hcm_id = City.last.id
-District.create(name: "#{I18n.t('district')} 1", city_id: hanoi_id)
-District.create(name: "#{I18n.t('district')} 2", city_id: hanoi_id)
-District.create(name: "#{I18n.t('district')} 3", city_id: hanoi_id)
-District.create(name: "#{I18n.t('district')} 4", city_id: hanoi_id)
-District.create(name: "#{I18n.t('district')} 5", city_id: hanoi_id)
-District.create(name: "#{I18n.t('district')} 6", city_id: hanoi_id)
-District.create(name: "#{I18n.t('district')} 7", city_id: hanoi_id)
-District.create(name: "#{I18n.t('district')} 8", city_id: hanoi_id)
-District.create(name: "#{I18n.t('district')} 9", city_id: hanoi_id)
-District.create(name: "#{I18n.t('district')} 10", city_id: hanoi_id)
-District.create(name: "#{I18n.t('district')} 11", city_id: hanoi_id)
+District.create(name: "#{I18n.t('district')} 1", city_id: hcm_id)
+District.create(name: "#{I18n.t('district')} 2", city_id: hcm_id)
+District.create(name: "#{I18n.t('district')} 3", city_id: hcm_id)
+District.create(name: "#{I18n.t('district')} 4", city_id: hcm_id)
+District.create(name: "#{I18n.t('district')} 5", city_id: hcm_id)
+District.create(name: "#{I18n.t('district')} 6", city_id: hcm_id)
+District.create(name: "#{I18n.t('district')} 7", city_id: hcm_id)
+District.create(name: "#{I18n.t('district')} 8", city_id: hcm_id)
+District.create(name: "#{I18n.t('district')} 9", city_id: hcm_id)
+District.create(name: "#{I18n.t('district')} 10", city_id: hcm_id)
+District.create(name: "#{I18n.t('district')} 11", city_id: hcm_id)
 
 LightingDirection.create(name: "#{I18n.t('east')}")
 LightingDirection.create(name: "#{I18n.t('west')}")
@@ -74,11 +74,13 @@ user.password_confirmation = '123456'
 user.save
 
 #Create Random data
+names = ["Bùi Kim Quyên", "Võ An Phước Thiện", "Phạm Nguyễn QuỳnhTrân", "Dương Hoài Phương", "Phan Vinh Bính", "Võ Minh Thư", "Phan Huỳnh Ngọc Dung", "Nguyễn Vân Anh", "Nguyễn Thế Vinh", "Nguyen Thi Thanh Bích", "Lê Minh Vương", "nguyễn thiện toàn", " Trương Gia Mẫn", "Vương Thu Hiền", "Châu Thị Kim Anh", "Trần NGọc Trang", "huynh minh", "Cao Minh Hiền", "Ta thị thanh tuyen", "Võ Thị Tuyết Vân", "Mai Khánh Vân", "Đoàn Thị Mỹ Xuân", "Doãn Phan Trung Hải", "Lâm Ngọc Linh ", "Nguyễn Minh Châu", "Nguyễn Thạch Giang", "Võ tường duy ", "Trần Thị Kim  Ngân", "Huỳnh Kim Hoàng", "Nguyễn Phước Uyên Thư", "Lê Trung Kiên", "Sity- HaChar", "Kiều Hồng Trang", "Le Thi Hong Khanh", "Phạm Văn Đồng", "Lê Thị Lệ Thủy", "Trương Yến Thanh", "Trần Thị Cẩm Tiên", "Huỳnh Thị Ngọc Thảo", "Đào Duy Toàn", "Nguyễn Thùy Như Quỳnh", "Ngô Phạm Thanh Trúc", "Trần Phan Bảo Thu", "Phạm Ngọc Thảo Vi ", "Phan Vũ Minh Quyền", "Trần Phan Bảo Anh 31-07-1994", "Phạm Hoàng Nam Trung", "Nguyễn Văn Khải", "Trương Hoài Thuận", "Trương Thị Bích Ngọc", "Khưu Minh Trường", "Đỗ Nguyễn Nhất Anh", "Đặng Thị Thủy Tiên", "Dương phạm Thuỳ an", "Hồ Thị Bích Ngọc", "Vũ Ngọc Vân Khanh", "Đặng Như Ngọc", "Bùi Duy Quang", "Nguyễn Huỳnh Thanh Hiền", "Huỳnh Khánh Duy", "Nguyễn Đình Đức", "Lê Nguyễn Kim Ngọc", " Ngô Nguyệt An", "ngo kim dung", "Ngô Cao Sơn", "Lê Thị Thùy Liên", "Trần Châu Bảo Ngọc", "Nguyễn Mai Lê", "Võ Việt Hản", "Lục Kim Ngọc", "Ngô Hồng Nhung", "Lê Hồng Phúc", "Lu Kim Hoà", "Huỳnh Phạm Ngọc Thảo", "Cai Huỳnh Trúc Vy ", "Phan Hữu Sơn CA", "Nhâm Bá Duy ", "Nguyen Minh Thuy", "Nguyễn Hữu Bảo Thơ", "Đinh Thị Hồng Vân", "Đinh Thị Hoa", "Nguyễn Tấn Thành", "Lương Hòa Nhân ", "Nguyễn Thuỳ Linh", "Nguyễn Thị Huyền Trâm", "Lê Thị Ngọc Hoa", "lê thị diễm hương", "Vũ Thị Hoàng Quyên", "Lê Minh Huy", "Bùi Thị Ngọc Điệp", "Trần Doanh ", "Nguyễn Trang Oanh", "Lê Hồ Minh Trâm", "Trần Khải Huy", "Lê Thùy Trúc Ly", "Lê Hàn Uyên", "Nguyễn Lê Hoàng Phương", "Nguyễn Thị Thúy An", "Lê Hạ Lam", "Ngô Thanh Hà"]
+
 1.upto(100) do |i|
   district = District.offset(rand(District.count)).first
   birthday = Date.today - rand(20..60).years - rand(1..365).days
   Customer.create(
-    name: "Nguyen Van #{i}",
+    name: names[i-1],
     birthday: birthday,
     birth_place: "#{district.name} #{district.city.name}",
     id_card: "0"+rand(100000000..1000000000).to_s,
