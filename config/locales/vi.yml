@@ -89,7 +89,10 @@ vi:
   delivery: "Bàn giao"
   issue_certificate: "Cấp giấy chứng nhận"
   build_the_roof: "Xây cất nóc"
-  in_progress: "đang xử lý"
-  done: "hoàn thành"
-  
+  in_progress: "Đang xử lý"
+  done: "Hoàn thành"
+  payment_times: "Thanh toán lần thứ "
+  building_address: "Địa chỉ tòa nhà"
+  customer_name: "Tên khách hàng"
+  progress: "Tiến độ"
   

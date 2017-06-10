@@ -21,19 +21,20 @@ pp_5 = PaymentPeriod.create(name: "#{I18n.t('issue_certificate')}")
 pp_6 = PaymentPeriod.create(name: "#{I18n.t('build_the_roof')}")
 pp_7 = PaymentPeriod.create(name: "#{I18n.t('done')}")
 
-Progress.create(step: 1, payment_period_id: pp_1.id, note: "thanh toan lan 1", payment_amount: 0.3, payment_plan_id: plan_1.id)
-Progress.create(step: 2, payment_period_id: pp_2.id, note: "thanh toan lan 2", payment_amount: 0.3, payment_plan_id: plan_1.id)
-Progress.create(step: 3, payment_period_id: pp_3.id, note: "thanh toan lan 3", payment_amount: 0.1, payment_plan_id: plan_1.id)
-Progress.create(step: 4, payment_period_id: pp_4.id, note: "thanh toan lan 4", payment_amount: 0.25, payment_plan_id: plan_1.id)
-Progress.create(step: 5, payment_period_id: pp_5.id, note: "thanh toan lan 5", payment_amount: 0.05, payment_plan_id: plan_1.id)
-Progress.create(step: 6, payment_period_id: pp_7.id, note: "thanh toan lan 6", payment_amount: 0, payment_plan_id: plan_1.id)
+Progress.create(step: 1, payment_period_id: pp_1.id, note: "#{I18n.t('payment_times')} 1", payment_amount: 0.3, payment_plan_id: plan_1.id)
+Progress.create(step: 2, payment_period_id: pp_2.id, note: "#{I18n.t('payment_times')} 2", payment_amount: 0.3, payment_plan_id: plan_1.id)
+Progress.create(step: 3, payment_period_id: pp_3.id, note: "#{I18n.t('payment_times')} 3", payment_amount: 0.1, payment_plan_id: plan_1.id)
+Progress.create(step: 4, payment_period_id: pp_4.id, note: "#{I18n.t('payment_times')} 4", payment_amount: 0.25, payment_plan_id: plan_1.id)
+Progress.create(step: 5, payment_period_id: pp_5.id, note: "#{I18n.t('payment_times')} 5", payment_amount: 0.05, payment_plan_id: plan_1.id)
+Progress.create(step: 6, payment_period_id: pp_7.id, note: "", payment_amount: 0, payment_plan_id: plan_1.id)
 
-Progress.create(step: 1, payment_period_id: pp_1.id, note: "thanh toan lan 1", payment_amount: 0.3, payment_plan_id: plan_2.id)
-Progress.create(step: 2, payment_period_id: pp_2.id, note: "thanh toan lan 2", payment_amount: 0.3, payment_plan_id: plan_2.id)
-Progress.create(step: 3, payment_period_id: pp_6.id, note: "thanh toan lan 3", payment_amount: 0.1, payment_plan_id: plan_2.id)
-Progress.create(step: 4, payment_period_id: pp_4.id, note: "thanh toan lan 4", payment_amount: 0.25, payment_plan_id: plan_2.id)
-Progress.create(step: 5, payment_period_id: pp_5.id, note: "thanh toan lan 5", payment_amount: 0.05, payment_plan_id: plan_2.id)
-Progress.create(step: 6, payment_period_id: pp_7.id, note: "thanh toan lan 6", payment_amount: 0, payment_plan_id: plan_2.id)
+Progress.create(step: 1, payment_period_id: pp_1.id, note: "#{I18n.t('payment_times')} 1", payment_amount: 0.3, payment_plan_id: plan_2.id)
+Progress.create(step: 2, payment_period_id: pp_2.id, note: "#{I18n.t('payment_times')} 2", payment_amount: 0.3, payment_plan_id: plan_2.id)
+Progress.create(step: 3, payment_period_id: pp_6.id, note: "#{I18n.t('payment_times')} 3", payment_amount: 0.1, payment_plan_id: plan_2.id)
+Progress.create(step: 4, payment_period_id: pp_4.id, note: "#{I18n.t('payment_times')} 4", payment_amount: 0.25, payment_plan_id: plan_2.id)
+Progress.create(step: 5, payment_period_id: pp_5.id, note: "#{I18n.t('payment_times')} 5", payment_amount: 0.05, payment_plan_id: plan_2.id)
+Progress.create(step: 6, payment_period_id: pp_7.id, note: "", payment_amount: 0, payment_plan_id: plan_2.id)
+
 
 City.create(name: "#{I18n.t('hanoi')}")
 hanoi_id = City.last.id
@@ -179,8 +180,11 @@ index = 1
 contracted_rooms.each do |r|
   district = District.offset(rand(District.count)).first
   birthday = Date.today - rand(20..60).years - rand(1..365).days
+  last_name = last_names.sample
+  middle_name = (middle_names - [last_names]).sample
+  first_name = (first_names - [last_name, middle_name]).sample
   customer = Customer.create(
-    name: "#{last_names.sample} #{middle_names.sample} #{first_names.sample}",
+    name: "#{last_name} #{middle_name} #{first_name}",
     birthday: birthday,
     birth_place: "#{district.name} #{district.city.name}",
     id_card: "0"+rand(100000000..1000000000).to_s,
