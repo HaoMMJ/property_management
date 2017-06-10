@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   get 'contracts', to: 'contract#index'
   resources :contract
   post 'contract/create', to: 'contract#create'
+
+  get 'mini_search/room', to: 'mini_search#room'
 end

@@ -1,0 +1,52 @@
+.row
+  .col-sm-3.col-md-2.sidebar.search-form
+    = search_form_for @q, url: mini_search_room_path do |f|
+      .form-group
+        label for='room_no' #{I18n.t('room_no')}
+        = f.search_field :room_no_cont, class: 'form-control'
+      .form-group
+        = hidden_field_tag :opener_id, params["opener_id"]
+        = f.submit "#{I18n.t('search')}", class: "btn btn-info"
+  .col-sm-12.col-sm-offset-0.col-md-10.col-md-offset-2.main
+    div
+      .pull-xs-left
+        h3 #{I18n.t('search_result')}
+      .pull-xs-right
+        = will_paginate @rooms, renderer: BootstrapPagination::Rails
+    .table-responsive
+      table.table.table-bordered.table-striped.table-hover.searchresult
+        thead
+          tr
+            th #{I18n.t('building_name')}
+            th #{I18n.t('room_no')}
+            th #{I18n.t('room_status')}
+            th #{I18n.t('state')}
+            th #{I18n.t('lighting_direction')}
+            th #{I18n.t('layout')}
+            th #{I18n.t('floor')}
+            th #{I18n.t('space')}
+            th #{I18n.t('available_on')}
+            th #{I18n.t('opened_at')}
+            th #{I18n.t('price')} VND
+            th
+        tbody
+          - if @rooms.length > 0
+            - @rooms.each do |r|
+              tr
+                td #{r.building.name}
+                td #{r.room_no}
+                td #{r.room_status}
+                td #{r.state}
+                td #{r.lighting_direction.name}
+                td #{r.layout.id}
+                td #{r.floor}
+                td #{r.space.to_i}
+                td #{r.available_on}
+                td #{r.opened_at}
+                td #{r.price}
+                td
+                  - items = "{\"id\": \"#{r.id}\", \"building_name\": \"#{r.building.name}\", \"room_no\": \"#{r.room_no}\", \"room_floor\": \"#{r.floor}\", \"space\": \"#{r.space.to_i}\", \"price\": \"#{r.price}\"}"
+                  button.MiniSearchSelectButton.btn.btn-info items="#{items}" opener_id=params["opener_id"] #{I18n.t('select')}
+          - else
+            tr
+              td.centered colspan=7 #{I18n.t('not_found')}

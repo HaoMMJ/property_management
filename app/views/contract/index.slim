@@ -34,10 +34,46 @@
             .modal-body
               .form-group
                 label for='room' #{I18n.t('room')}
-                = text_field_tag(:room, nil, class: 'form-control')
+                table.table.table-bordered.table-striped.table-hover
+                  thead
+                    tr
+                      th #{I18n.t('building')}
+                      th #{I18n.t('room_no')}
+                      th #{I18n.t('floor')}
+                      th #{I18n.t('space')}
+                      th #{I18n.t('price')} VND
+                      th #{I18n.t('search')}
+                  tbody
+                    tr
+                      td#new_building_name
+                      td#new_room_no
+                      td#new_room_floor
+                      td#new_room_space
+                      td#new_room_price
+                      td
+                        button#search_room.btn.btn-default type="button" 
+                          span.glyphicon.glyphicon-search
+                            | Search
               .form-group
                 label for='customer' #{I18n.t('customer')}
-                = text_field_tag(:customer, nil, class: 'form-control')
+                table.table.table-bordered.table-striped.table-hover
+                  thead
+                    tr
+                      th #{I18n.t('customer_name')}
+                      th #{I18n.t('birthday')}
+                      th #{I18n.t('id_card')}
+                      th #{I18n.t('address')}
+                      th #{I18n.t('search')}
+                  tbody
+                    tr
+                      td#new_customer_name
+                      td#new_customer_birthday
+                      td#new_customer_id_card
+                      td#new_customer_address
+                      td
+                        button#search_customer.MiniSearchContainer.btn.btn-default type="button" 
+                          span.glyphicon.glyphicon-search
+                            | Search
             .modal-footer
               = submit_tag "#{I18n.t('add')}", class: 'btn btn-info'
               button.btn.btn-default data-dismiss="modal" #{I18n.t('close')}

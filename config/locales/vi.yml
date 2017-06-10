@@ -95,4 +95,7 @@ vi:
   building_address: "Địa chỉ tòa nhà"
   customer_name: "Tên khách hàng"
   progress: "Tiến độ"
+  add_contract: "Thêm hợp đồng"
+  select: "Chọn"
+
   

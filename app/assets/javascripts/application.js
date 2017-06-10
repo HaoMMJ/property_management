@@ -26,9 +26,67 @@ function objectifyForm(formArray) {//serialize data function
 
 // Disable function
 jQuery.fn.extend({
-    disable: function(state) {
-        return this.each(function() {
-            this.disabled = state;
-        });
-    }
+  disable: function(state) {
+    return this.each(function() {
+        this.disabled = state;
+    });
+  }
+});
+
+function windowOpen(caller, url, name, options, tab){
+  if (!options) {
+    var height = 620;
+    var width = 1024;
+    options = 'height=' + height + ',width=' + width;
+  }
+  if (window.popup == false) {
+    options = "menubar=1,toolbar=1,status=1," + options
+  }
+  options = "scrollbars=1,resizable=1,"+ options;
+  var w = window.emptyTab;
+  if (w != null) {
+    w.location.href = url;
+  } else {
+    w = window.open(url, '', options);
+  }
+  window.childWindow = w;
+  var window_id = (new Date().getTime()) * 1000 + Math.floor(Math.random() * 1000);
+  if (w) {
+    w.name = window_id;
+  }
+  window.caller_for[window_id] = caller;
+  window.emptyTab = null;
+}
+
+window.caller_for = {};
+window.callback_for = {};
+
+function findMiniSearchContainer($this) {
+  var container = $this.closest(".MiniSearchContainer");
+  return container;
+}
+
+function onMiniSearchButtonClick(self) {
+  var opener_id = self.attr('opener_id');
+  var items = self.attr('items');
+
+  updateMiniSearchOpener(window, opener_id, items);
+}
+
+function updateMiniSearchOpener(win, opener_id, items) {
+  var parent = win.opener;
+  // var parentjQ = parent.$;
+  // var caller = parent.caller_for[win.name];
+  // var container = findMiniSearchContainer(parentjQ(caller));
+  var callback = parent.document["callback_for_" + opener_id];
+  if( callback ){
+    callback(items);
+  }
+}
+
+$(function () {
+  $(".MiniSearchSelectButton").click(function(){
+    onMiniSearchButtonClick($(this));
+    window.close();
+  });
 });
