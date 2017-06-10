@@ -17,6 +17,7 @@
         = f.search_field :by_customer_name, class: 'form-control'
       .form-group
         label for='progress' #{I18n.t('progress')}
+        br
         = f.collection_select :progress_id_eq, PaymentPeriod.all, :id, :name, class: 'form-control'  
       .form-group
         = f.submit "#{I18n.t('search')}", class: "btn btn-info"

@@ -5,20 +5,23 @@ class Contract < ApplicationRecord
 
 
   scope :visible, -> {
-    where("is_deleted = false")
+    joins(room: :building).
+    joins(:customer).
+    where("contracts.is_deleted = false")
   }
 
-  scope :by_building_address, -> {
-    where("is_deleted = false")
+  scope :by_building_address, ->(address) {
+    where("buildings.address like ?", "%#{address}%")
   }
-  scope :by_building_name, -> {
-    where("is_deleted = false")
+  scope :by_building_name, -> (name){
+    joins(room: :building).
+    where("buildings.name like ?", "%#{name}%")
   }
-  scope :by_room_no, -> {
-    where("is_deleted = false")
+  scope :by_room_no, ->(room_no) {
+    where("rooms.room_no like ?", "%#{room_no}%")
   }
-  scope :by_customer_name, -> {
-    where("is_deleted = false")
+  scope :by_customer_name, -> (name){
+    where("customers.name like ?", "%#{name}%")
   }
 
   def self.ransackable_scopes(auth_object = nil)
