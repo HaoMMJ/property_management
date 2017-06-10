@@ -14,4 +14,8 @@ Rails.application.routes.draw do
   get 'rooms', to: 'room#index'
   resources :room
   post 'room/create', to: 'room#create'
+
+  get 'contracts', to: 'contract#index'
+  resources :contract
+  post 'contract/create', to: 'contract#create'
 end

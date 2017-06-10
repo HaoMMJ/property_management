@@ -10,9 +10,30 @@
 BuildingType.create(name: "#{I18n.t('villa')}")
 BuildingType.create(name: "#{I18n.t('apartment')}")
 
-PaymentPlan.create(name: "#{I18n.t('kind')} 1")
-PaymentPlan.create(name: "#{I18n.t('kind')} 2")
+plan_1 = PaymentPlan.create(name: "#{I18n.t('kind')} 1")
+plan_2 = PaymentPlan.create(name: "#{I18n.t('kind')} 2")
 
+pp_1 = PaymentPeriod.create(name: "#{I18n.t('contract_registered')}")
+pp_2 = PaymentPeriod.create(name: "#{I18n.t('after_days', days: 30)}")
+pp_3 = PaymentPeriod.create(name: "#{I18n.t('after_days', days: 60)}")
+pp_4 = PaymentPeriod.create(name: "#{I18n.t('delivery')}")
+pp_5 = PaymentPeriod.create(name: "#{I18n.t('issue_certificate')}")
+pp_6 = PaymentPeriod.create(name: "#{I18n.t('build_the_roof')}")
+pp_7 = PaymentPeriod.create(name: "#{I18n.t('done')}")
+
+Progress.create(step: 1, payment_period_id: pp_1.id, note: "thanh toan lan 1", payment_amount: 0.3, payment_plan_id: plan_1.id)
+Progress.create(step: 2, payment_period_id: pp_2.id, note: "thanh toan lan 2", payment_amount: 0.3, payment_plan_id: plan_1.id)
+Progress.create(step: 3, payment_period_id: pp_3.id, note: "thanh toan lan 3", payment_amount: 0.1, payment_plan_id: plan_1.id)
+Progress.create(step: 4, payment_period_id: pp_4.id, note: "thanh toan lan 4", payment_amount: 0.25, payment_plan_id: plan_1.id)
+Progress.create(step: 5, payment_period_id: pp_5.id, note: "thanh toan lan 5", payment_amount: 0.05, payment_plan_id: plan_1.id)
+Progress.create(step: 6, payment_period_id: pp_7.id, note: "thanh toan lan 6", payment_amount: 0, payment_plan_id: plan_1.id)
+
+Progress.create(step: 1, payment_period_id: pp_1.id, note: "thanh toan lan 1", payment_amount: 0.3, payment_plan_id: plan_2.id)
+Progress.create(step: 2, payment_period_id: pp_2.id, note: "thanh toan lan 2", payment_amount: 0.3, payment_plan_id: plan_2.id)
+Progress.create(step: 3, payment_period_id: pp_6.id, note: "thanh toan lan 3", payment_amount: 0.1, payment_plan_id: plan_2.id)
+Progress.create(step: 4, payment_period_id: pp_4.id, note: "thanh toan lan 4", payment_amount: 0.25, payment_plan_id: plan_2.id)
+Progress.create(step: 5, payment_period_id: pp_5.id, note: "thanh toan lan 5", payment_amount: 0.05, payment_plan_id: plan_2.id)
+Progress.create(step: 6, payment_period_id: pp_7.id, note: "thanh toan lan 6", payment_amount: 0, payment_plan_id: plan_2.id)
 
 City.create(name: "#{I18n.t('hanoi')}")
 hanoi_id = City.last.id
@@ -74,25 +95,6 @@ user.password_confirmation = '123456'
 user.save
 
 #Create Random data
-names = ["Bùi Kim Quyên", "Võ An Phước Thiện", "Phạm Nguyễn QuỳnhTrân", "Dương Hoài Phương", "Phan Vinh Bính", "Võ Minh Thư", "Phan Huỳnh Ngọc Dung", "Nguyễn Vân Anh", "Nguyễn Thế Vinh", "Nguyen Thi Thanh Bích", "Lê Minh Vương", "nguyễn thiện toàn", " Trương Gia Mẫn", "Vương Thu Hiền", "Châu Thị Kim Anh", "Trần NGọc Trang", "huynh minh", "Cao Minh Hiền", "Ta thị thanh tuyen", "Võ Thị Tuyết Vân", "Mai Khánh Vân", "Đoàn Thị Mỹ Xuân", "Doãn Phan Trung Hải", "Lâm Ngọc Linh ", "Nguyễn Minh Châu", "Nguyễn Thạch Giang", "Võ tường duy ", "Trần Thị Kim  Ngân", "Huỳnh Kim Hoàng", "Nguyễn Phước Uyên Thư", "Lê Trung Kiên", "Sity- HaChar", "Kiều Hồng Trang", "Le Thi Hong Khanh", "Phạm Văn Đồng", "Lê Thị Lệ Thủy", "Trương Yến Thanh", "Trần Thị Cẩm Tiên", "Huỳnh Thị Ngọc Thảo", "Đào Duy Toàn", "Nguyễn Thùy Như Quỳnh", "Ngô Phạm Thanh Trúc", "Trần Phan Bảo Thu", "Phạm Ngọc Thảo Vi ", "Phan Vũ Minh Quyền", "Trần Phan Bảo Anh 31-07-1994", "Phạm Hoàng Nam Trung", "Nguyễn Văn Khải", "Trương Hoài Thuận", "Trương Thị Bích Ngọc", "Khưu Minh Trường", "Đỗ Nguyễn Nhất Anh", "Đặng Thị Thủy Tiên", "Dương phạm Thuỳ an", "Hồ Thị Bích Ngọc", "Vũ Ngọc Vân Khanh", "Đặng Như Ngọc", "Bùi Duy Quang", "Nguyễn Huỳnh Thanh Hiền", "Huỳnh Khánh Duy", "Nguyễn Đình Đức", "Lê Nguyễn Kim Ngọc", " Ngô Nguyệt An", "ngo kim dung", "Ngô Cao Sơn", "Lê Thị Thùy Liên", "Trần Châu Bảo Ngọc", "Nguyễn Mai Lê", "Võ Việt Hản", "Lục Kim Ngọc", "Ngô Hồng Nhung", "Lê Hồng Phúc", "Lu Kim Hoà", "Huỳnh Phạm Ngọc Thảo", "Cai Huỳnh Trúc Vy ", "Phan Hữu Sơn CA", "Nhâm Bá Duy ", "Nguyen Minh Thuy", "Nguyễn Hữu Bảo Thơ", "Đinh Thị Hồng Vân", "Đinh Thị Hoa", "Nguyễn Tấn Thành", "Lương Hòa Nhân ", "Nguyễn Thuỳ Linh", "Nguyễn Thị Huyền Trâm", "Lê Thị Ngọc Hoa", "lê thị diễm hương", "Vũ Thị Hoàng Quyên", "Lê Minh Huy", "Bùi Thị Ngọc Điệp", "Trần Doanh ", "Nguyễn Trang Oanh", "Lê Hồ Minh Trâm", "Trần Khải Huy", "Lê Thùy Trúc Ly", "Lê Hàn Uyên", "Nguyễn Lê Hoàng Phương", "Nguyễn Thị Thúy An", "Lê Hạ Lam", "Ngô Thanh Hà"]
-
-1.upto(100) do |i|
-  district = District.offset(rand(District.count)).first
-  birthday = Date.today - rand(20..60).years - rand(1..365).days
-  Customer.create(
-    name: names[i-1],
-    birthday: birthday,
-    birth_place: "#{district.name} #{district.city.name}",
-    id_card: "0"+rand(100000000..1000000000).to_s,
-    issued_by: "CA TP #{district.city.name}",
-    issued_on: birthday + 18.years + rand(1..365).days,
-    tel: "0"+rand(100000000..1000000000).to_s,
-    occupation: ["cong chuc nha nuoc", "nhan vien van phong", "kinh doanh", "lao dong tu do"].sample,
-    email: "email_#{i}@email.com"
-  )
-end
-
-
 statuses = ["#{I18n.t('done')}", "#{I18n.t('in_construction')}"]
 room_states = ["#{I18n.t('available')}", "#{I18n.t('applied')}" ,"#{I18n.t('sold')}"]
 room_index = 1
@@ -100,7 +102,7 @@ room_index = 1
 #Create Random data
 0.upto(20) do |i|
   district = District.offset(rand(District.count)).first
-  built_on = Date.today - rand(100..1000).days
+  built_on = Date.today - rand(120..1000).days
   group = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
   building_status = statuses[rand(0..1)]
   payment_plan_id = (building_status == "#{I18n.t('in_construction')}") ? PaymentPlan.first.id : PaymentPlan.last.id
@@ -147,7 +149,7 @@ room_index = 1
     
     1.upto(num_rooms) do |j|
       room_status = (j < percent_complete) ? "#{I18n.t('done')}" : "#{I18n.t('in_construction')}"
-      state = in_construction ? ["available", "applied"].sample : room_states.sample
+      state = in_construction ? ["#{I18n.t('available')}", "#{I18n.t('applied')}"].sample : room_states.sample
       space = rand(45..130)
       Room.create(
         building_id: building.id,
@@ -166,5 +168,50 @@ room_index = 1
       room_index += 1
     end
   end
+end
+
+first_names = ["Anh", "An", "Bình", "Hà", "Khánh", "Linh", "Lương", "Tâm", "Thanh", "Tú", "Cường", "Hùng", "Tráng", "Dũng", "Thông", "Minh", "Trí", "Tuệ", "Quang", "Sáng", "Nhân", "Trung", "Tín", "Lễ", "Nghĩa", "Công", "Hiệp", "Phúc", "Phú", "Quý", "Kim", "Tài", "Danh", "Đạt", "Sơn", "Giang", "Lâm", "Hải", "Dương", "Mai", "Lan", "Cúc", "Hoa", "Hương", "Yến", "Oanh", "Bích", 'Ngọc', "Trân", "Hạnh", "Thảo", "Hiền", "Dung", "Vân", "Thúy", "Diễm", "Lệ", "Nguyệt", "Nga", "Trang", "Huyền", "Ngân"]
+middle_names = ["Xuân", "Thu", "Cẩm", "Châu", "Hồng", "Hoàng", "Đức", "Hạnh", "Đình", "Đại", "Thị", "Diệu", "Văn", "Bá", "Mạnh", "Hữu", " Bảo", "Tường", "Thục", "Nhã", "Diệp", "Phương", "Kim", "Ngọc", "Cát", "Kiều", "Công", "Đình", "Duy", "Hải"]
+last_names = ["Nguyễn", "Trần", "Lê", "Phạm", "Hoàng", "Huỳnh", "Phan", "Vũ", "Võ", "Đặng", "Bùi", "Đỗ", "Hồ", "Ngô", "Dương", "Lý"]
+
+contracted_rooms = Room.where(state: ["#{I18n.t('applied')}" ,"#{I18n.t('sold')}"])
+index = 1
+contracted_rooms.each do |r|
+  district = District.offset(rand(District.count)).first
+  birthday = Date.today - rand(20..60).years - rand(1..365).days
+  customer = Customer.create(
+    name: "#{last_names.sample} #{middle_names.sample} #{first_names.sample}",
+    birthday: birthday,
+    birth_place: "#{district.name} #{district.city.name}",
+    id_card: "0"+rand(100000000..1000000000).to_s,
+    issued_by: "CA TP #{district.city.name}",
+    issued_on: birthday + 18.years + rand(1..365).days,
+    tel: "0"+rand(100000000..1000000000).to_s,
+    occupation: ["cong chuc nha nuoc", "nhan vien van phong", "kinh doanh", "lao dong tu do"].sample,
+    email: "email_#{index}@email.com"
+  )
+  index += 1
+
+  applied_on = rand(r.opened_at..(Date.today - 10))
+  payment_plan = r.building.payment_plan
+
+  if r.state == "#{I18n.t('applied')}"
+    step = ((Date.today - applied_on).to_f / 30).ceil
+    step = (step > 6) ? 6 : step.to_i
+  else
+    step = 6
+  end 
+  progress = payment_plan.progresses.where(step: step).first
+  if progress.nil?
+    puts step
+    puts applied_on
+    puts (Date.today - applied_on).to_f
+  end
+  Contract.create(
+    room_id: r.id, 
+    customer_id: customer.id, 
+    progress_id: progress.id, 
+    applied_on: applied_on
+  )
 end
 

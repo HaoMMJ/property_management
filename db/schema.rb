@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601013725) do
+ActiveRecord::Schema.define(version: 20170608041152) do
 
   create_table "building_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string  "name"
@@ -83,6 +83,11 @@ ActiveRecord::Schema.define(version: 20170601013725) do
     t.boolean "is_deleted", default: false
   end
 
+  create_table "payment_periods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string  "name"
+    t.boolean "is_deleted", default: false
+  end
+
   create_table "payment_plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string  "name"
     t.boolean "is_deleted", default: false
@@ -98,11 +103,11 @@ ActiveRecord::Schema.define(version: 20170601013725) do
 
   create_table "progresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "step"
-    t.string  "name"
+    t.integer "payment_period_id"
     t.string  "note"
-    t.float   "payment_amount",  limit: 24
+    t.float   "payment_amount",    limit: 24
     t.integer "payment_plan_id"
-    t.boolean "is_deleted",                 default: false
+    t.boolean "is_deleted",                   default: false
   end
 
   create_table "rooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

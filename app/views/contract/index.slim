@@ -1,0 +1,82 @@
+= javascript_include_tag "contract"
+
+.row
+  .col-sm-3.col-md-2.sidebar.search-form
+    = search_form_for @q do |f|
+      .form-group
+        label for='name' #{I18n.t('name')}
+        = f.search_field :name_cont, class: 'form-control'
+      .form-group
+        label for='address' #{I18n.t('address')}
+        = f.search_field :address_cont, class: 'form-control'
+      .form-group
+        = f.submit "#{I18n.t('search')}", class: "btn btn-info"
+  .col-sm-12.col-sm-offset-0.col-md-10.col-md-offset-2.main
+    button.btn.btn-info data-toggle="modal" data-target="#addNewModal" #{I18n.t('add_new')}
+
+    = form_tag(contract_create_path, id: 'add_contract_form') do |f|
+      #addNewModal.modal.fade role='dialog'
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close data-dismiss="modal" &times;
+              h4.modal-title #{I18n.t('add_contract')}
+            .modal-body
+              .form-group
+                label for='name' #{I18n.t('name')}
+                = text_field_tag(:name, nil, class: 'form-control')
+              .form-group
+                label for='contract_type_id' #{I18n.t('kind')}
+                = text_field_tag(:contract_type_id, nil, class: 'form-control')
+              .form-group
+                label for='city_id' #{I18n.t('city')}
+                = text_field_tag(:city_id, nil, class: 'form-control')
+              .form-group
+                label for='district_id' #{I18n.t('district')}
+                = text_field_tag(:district_id, nil, class: 'form-control') 
+              .form-group
+                label for='address' #{I18n.t('address')}
+                = text_field_tag(:address, nil, class: 'form-control')
+              .form-group
+                label for='contract_status' #{I18n.t('contract_status')}
+                = text_field_tag(:contract_status, nil, class: 'form-control')
+              .form-group
+                label for='payment_plan' #{I18n.t('payment_plan')}
+                = text_field_tag(:payment_plan, nil, class: 'form-control')
+            .modal-footer
+              = submit_tag "#{I18n.t('add')}", class: 'btn btn-info'
+              button.btn.btn-default data-dismiss="modal" #{I18n.t('close')}
+    div
+      .pull-xs-left
+        h3 #{I18n.t('search_result')}
+      .pull-xs-right
+        = will_paginate @contracts, renderer: BootstrapPagination::Rails
+    .table-responsive
+      table.table.table-bordered.table-striped.table-hover.searchresult
+        thead
+          tr
+            th #{I18n.t('name')}
+            th #{I18n.t('kind')}
+            th #{I18n.t('address')}
+            th #{I18n.t('built_on')}
+            th #{I18n.t('contract_status')}
+            th #{I18n.t('num_floors')}
+            th style="width: 144px;"
+        tbody
+          - if @contracts.length > 0
+            - @contracts.each do |c|
+              tr
+                td #{c.name}
+                td #{c.contract_type.name}
+                td #{c.address}
+                td #{c.built_on}
+                td #{c.contract_status}
+                td #{c.num_floors}
+                td
+                  button.updateBuidling.btn.btn-info contract-id="#{c.id}" #{I18n.t('detail')}
+
+                  = link_to contract_path(c.id), remote: true, method: :delete,  data: { confirm: 'Are you sure?' }, class: 'delete_contract' do
+                    button.btn.btn-secondary #{I18n.t('delete')}
+          - else
+            tr
+              td.centered colspan=7 #{I18n.t('not_found')}
