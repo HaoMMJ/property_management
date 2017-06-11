@@ -2,14 +2,14 @@
   .col-sm-3.col-md-2.sidebar.search-form
     = search_form_for @q do |f|
       .form-group
-        label for='by_building_name' #{I18n.t('building_name')}
-        = f.search_field :by_building_name, class: 'form-control'
+        label for='building_name_cont' #{I18n.t('building_name')}
+        = f.search_field :building_name_cont, class: 'form-control'
       .form-group
-        label for='by_building_type_id' #{I18n.t('kind')}
-        = f.collection_select :by_building_type_id, BuildingType.all, :id, :name, {include_blank: true}, {class: 'form-control'}
+        label for='building_building_type_id_eq' #{I18n.t('kind')}
+        = f.collection_select :building_building_type_id_eq, BuildingType.all, :id, :name, {include_blank: true}, {class: 'form-control'}
       .form-group
-        label for='by_building_address' #{I18n.t('address')}
-        = f.search_field :by_building_address, class: 'form-control'
+        label for='building_address_cont' #{I18n.t('address')}
+        = f.search_field :building_address_cont, class: 'form-control'
       .form-group
         label for='room_no' #{I18n.t('room_no')}
         = f.search_field :room_no_eq, class: 'form-control'
