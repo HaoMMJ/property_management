@@ -7,6 +7,7 @@ class CreateContract < ActiveRecord::Migration[5.0]
       t.string  :current_status
       t.boolean :is_deleted, default: false
       t.date    :applied_on
+      t.timestamps
     end
   end
 end

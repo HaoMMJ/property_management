@@ -13,84 +13,106 @@
 ActiveRecord::Schema.define(version: 20170608041152) do
 
   create_table "building_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "name"
-    t.boolean "is_deleted", default: false
+    t.string   "name"
+    t.boolean  "is_deleted", default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "buildings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "name"
-    t.integer "building_type_id"
-    t.integer "district_id"
-    t.string  "address"
-    t.date    "built_on"
-    t.string  "building_status"
-    t.boolean "is_deleted",       default: false
-    t.integer "num_floors"
-    t.integer "payment_plan_id"
+    t.string   "name"
+    t.integer  "building_type_id"
+    t.integer  "district_id"
+    t.string   "address"
+    t.date     "built_on"
+    t.string   "building_status"
+    t.boolean  "is_deleted",       default: false
+    t.integer  "num_floors"
+    t.integer  "payment_plan_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "name"
-    t.boolean "is_deleted", default: false
+    t.string   "name"
+    t.boolean  "is_deleted", default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "contracts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "room_id"
-    t.integer "customer_id"
-    t.integer "progress_id"
-    t.string  "current_status"
-    t.boolean "is_deleted",     default: false
-    t.date    "applied_on"
+    t.integer  "room_id"
+    t.integer  "customer_id"
+    t.integer  "progress_id"
+    t.string   "current_status"
+    t.boolean  "is_deleted",     default: false
+    t.date     "applied_on"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "name"
-    t.date    "birthday"
-    t.string  "birth_place"
-    t.string  "id_card"
-    t.string  "issued_by"
-    t.date    "issued_on"
-    t.string  "tel"
-    t.string  "address"
-    t.string  "occupation"
-    t.string  "email"
-    t.boolean "is_deleted",  default: false
+    t.string   "name"
+    t.date     "birthday"
+    t.string   "birth_place"
+    t.string   "id_card"
+    t.string   "issued_by"
+    t.date     "issued_on"
+    t.string   "tel"
+    t.string   "address"
+    t.string   "occupation"
+    t.string   "email"
+    t.boolean  "is_deleted",  default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "districts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "name"
-    t.integer "city_id"
-    t.boolean "is_deleted", default: false
+    t.string   "name"
+    t.integer  "city_id"
+    t.boolean  "is_deleted", default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "equipment", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "name"
-    t.string  "brand_name"
-    t.boolean "is_deleted", default: false
+    t.string   "name"
+    t.string   "brand_name"
+    t.boolean  "is_deleted", default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "layouts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "number_of_bedrooms"
-    t.integer "number_of_wc"
-    t.integer "number_of_living_rooms"
-    t.integer "number_of_kitchens"
-    t.integer "number_of_dinning_rooms"
-    t.boolean "is_deleted",              default: false
+    t.integer  "number_of_bedrooms"
+    t.integer  "number_of_wc"
+    t.integer  "number_of_living_rooms"
+    t.integer  "number_of_kitchens"
+    t.integer  "number_of_dinning_rooms"
+    t.boolean  "is_deleted",              default: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
   create_table "lighting_directions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "name"
-    t.boolean "is_deleted", default: false
+    t.string   "name"
+    t.boolean  "is_deleted", default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "payment_periods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "name"
-    t.boolean "is_deleted", default: false
+    t.string   "name"
+    t.boolean  "is_deleted", default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "payment_plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "name"
-    t.boolean "is_deleted", default: false
+    t.string   "name"
+    t.boolean  "is_deleted", default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -99,31 +121,37 @@ ActiveRecord::Schema.define(version: 20170608041152) do
     t.integer  "money"
     t.string   "content"
     t.boolean  "is_deleted",  default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "progresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "step"
-    t.integer "payment_period_id"
-    t.string  "note"
-    t.float   "payment_amount",    limit: 24
-    t.integer "payment_plan_id"
-    t.boolean "is_deleted",                   default: false
+    t.integer  "step"
+    t.integer  "payment_period_id"
+    t.string   "note"
+    t.float    "payment_amount",    limit: 24
+    t.integer  "payment_plan_id"
+    t.boolean  "is_deleted",                   default: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
   create_table "rooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "building_id"
-    t.string  "room_no"
-    t.string  "room_status"
-    t.string  "state"
-    t.integer "lighting_direction_id"
-    t.integer "layout_id"
-    t.integer "floor"
-    t.float   "space",                 limit: 24
-    t.date    "available_on"
-    t.date    "opened_at"
-    t.string  "price"
-    t.date    "price_change_at"
-    t.boolean "is_deleted",                       default: false
+    t.integer  "building_id"
+    t.string   "room_no"
+    t.string   "room_status"
+    t.string   "state"
+    t.integer  "lighting_direction_id"
+    t.integer  "layout_id"
+    t.integer  "floor"
+    t.float    "space",                 limit: 24
+    t.date     "available_on"
+    t.date     "opened_at"
+    t.string   "price"
+    t.date     "price_change_at"
+    t.boolean  "is_deleted",                       default: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

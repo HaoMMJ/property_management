@@ -4,6 +4,10 @@ class Room < ApplicationRecord
   belongs_to :layout
 
   scope :active, -> {
-    where("is_deleted = false")
+    where("rooms.is_deleted = false").order(created_at: :desc)
+  }
+
+  scope :available, -> {
+    where(state: I18n.t('available'))
   }
 end

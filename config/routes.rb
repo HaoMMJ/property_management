@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   post 'contract/create', to: 'contract#create'
 
   get 'mini_search/room', to: 'mini_search#room'
+  get 'mini_search/customer', to: 'mini_search#customer'
 end

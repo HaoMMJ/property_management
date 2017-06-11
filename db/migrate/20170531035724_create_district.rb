@@ -4,6 +4,7 @@ class CreateDistrict < ActiveRecord::Migration[5.0]
       t.string  :name
       t.integer :city_id
       t.boolean :is_deleted, default: false
+      t.timestamps
     end
   end
 end

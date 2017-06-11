@@ -101,7 +101,7 @@ room_states = ["#{I18n.t('available')}", "#{I18n.t('applied')}" ,"#{I18n.t('sold
 room_index = 1
 
 #Create Random data
-0.upto(20) do |i|
+1.upto(21) do |i|
   district = District.offset(rand(District.count)).first
   built_on = Date.today - rand(120..1000).days
   group = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -187,6 +187,7 @@ contracted_rooms.each do |r|
     name: "#{last_name} #{middle_name} #{first_name}",
     birthday: birthday,
     birth_place: "#{district.name} #{district.city.name}",
+    address: "#{rand(10..1000)} #{district.name} #{district.city.name}",
     id_card: "0"+rand(100000000..1000000000).to_s,
     issued_by: "CA TP #{district.city.name}",
     issued_on: birthday + 18.years + rand(1..365).days,

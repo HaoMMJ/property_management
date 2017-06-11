@@ -10,6 +10,7 @@ class CreateBuilding < ActiveRecord::Migration[5.0]
       t.boolean :is_deleted, default: false
       t.integer :num_floors
       t.integer :payment_plan_id
+      t.timestamps
     end
   end
 end

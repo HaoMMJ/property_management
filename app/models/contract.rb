@@ -7,7 +7,7 @@ class Contract < ApplicationRecord
   scope :visible, -> {
     joins(room: :building).
     joins(:customer).
-    where("contracts.is_deleted = false")
+    where("contracts.is_deleted = false").order(created_at: :desc)
   }
 
   scope :by_building_address, ->(address) {

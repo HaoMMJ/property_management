@@ -69,7 +69,7 @@
           tr
             th #{I18n.t('name')}
             th #{I18n.t('birthday')}
-            th #{I18n.t('birth_place')}
+            th #{I18n.t('address')}
             th #{I18n.t('id_card')}
             th #{I18n.t('tel')}
             th #{I18n.t('email')}
@@ -80,7 +80,7 @@
               tr
                 td #{c.name}
                 td #{c.maybe.birthday.strftime("%d/%m/%Y").end}
-                td #{c.birth_place}
+                td #{c.address}
                 td #{c.id_card}
                 td #{c.tel}
                 td #{c.email}

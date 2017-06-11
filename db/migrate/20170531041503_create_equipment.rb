@@ -4,6 +4,7 @@ class CreateEquipment < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :brand_name
       t.boolean :is_deleted, default: false
+      t.timestamps
     end
   end
 end

@@ -7,6 +7,7 @@ class CreateProgress < ActiveRecord::Migration[5.0]
       t.float   :payment_amount
       t.integer :payment_plan_id
       t.boolean :is_deleted, default: false
+      t.timestamps
     end
   end
 end

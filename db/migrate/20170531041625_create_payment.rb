@@ -6,6 +6,7 @@ class CreatePayment < ActiveRecord::Migration[5.0]
       t.integer :money
       t.string  :content
       t.boolean :is_deleted, default: false
+      t.timestamps
     end
   end
 end

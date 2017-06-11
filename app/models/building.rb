@@ -4,6 +4,6 @@ class Building < ApplicationRecord
   has_many :rooms
 
   scope :active, -> {
-    where("is_deleted = false")
+    where("buildings.is_deleted = false").order(created_at: :desc)
   }
 end
