@@ -20,21 +20,16 @@ class BuildingController < ApplicationController
   #   binding.pry
   # end
 
-  # def destroy
-  #   customer = Customer.find(params['id'].to_i)
-  #   if customer.present?
-  #     customer.is_deleted = true
-  #     customer.save
-  #   end
-  #   respond_to do |format|
-  #     format.json  { render json: {deleted: "success"} , status: 200 }
-  #   end
-
-  #   # respond_to do |format|
-  #   #   format.html {redirect_to customer_url(id: params[:id])}
-  #   #   format.js 
-  #   # end
-  # end
+  def destroy
+    building = Building.find(params['id'].to_i)
+    if building.present?
+      building.is_deleted = true
+      building.save
+    end
+    respond_to do |format|
+      format.json  { render json: {deleted: "success"} , status: 200 }
+    end
+  end
 
   private
   def building_params
