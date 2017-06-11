@@ -13,12 +13,29 @@ class BuildingController < ApplicationController
     end
   end
 
-  # def show
-  # end
+  def show
+    building = Building.find(params["id"])
+    respond_to do |format|
+      format.json { render :json => {
+          building: building.as_json,
+        }
+      }
+    end
+  end
 
-  # def update
-  #   binding.pry
-  # end
+  def update
+    building = Building.find(params["id"])
+    if building.present?
+      building.update(building_params)
+      message = "success"
+    else
+      message = "fail"
+    end
+
+    respond_to do |format|
+      format.json  { render json: {message: message} , status: 200 }
+    end
+  end
 
   def destroy
     building = Building.find(params['id'].to_i)
