@@ -44,11 +44,10 @@ ActiveRecord::Schema.define(version: 20170608041152) do
     t.integer  "room_id"
     t.integer  "customer_id"
     t.integer  "progress_id"
-    t.string   "current_status"
-    t.boolean  "is_deleted",     default: false
-    t.date     "applied_on"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.boolean  "is_deleted",  default: false
+    t.date     "register_on"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

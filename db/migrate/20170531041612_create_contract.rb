@@ -4,9 +4,8 @@ class CreateContract < ActiveRecord::Migration[5.0]
       t.integer :room_id
       t.integer :customer_id
       t.integer :progress_id
-      t.string  :current_status
       t.boolean :is_deleted, default: false
-      t.date    :applied_on
+      t.date    :register_on
       t.timestamps
     end
   end

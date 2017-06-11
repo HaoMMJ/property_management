@@ -90,7 +90,7 @@ Equipment.create(name: "#{I18n.t('cooking_equipment')}", brand_name: "")
 Equipment.create(name: "#{I18n.t('chandeliers')}", brand_name: "")
 
 user = User.new
-user.email = 'admin@email.com'
+user.email = 'admin@trb.org'
 user.password = '123456'
 user.password_confirmation = '123456'
 user.save
@@ -197,11 +197,11 @@ contracted_rooms.each do |r|
   )
   index += 1
 
-  applied_on = rand(r.opened_at..(Date.today - 10))
+  register_on = rand(r.opened_at..(Date.today - 10))
   payment_plan = r.building.payment_plan
 
   if r.state == "#{I18n.t('applied')}"
-    step = ((Date.today - applied_on).to_f / 30).ceil
+    step = ((Date.today - register_on).to_f / 30).ceil
     step = (step > 6) ? 6 : step.to_i
   else
     step = 6
@@ -209,14 +209,14 @@ contracted_rooms.each do |r|
   progress = payment_plan.progresses.where(step: step).first
   if progress.nil?
     puts step
-    puts applied_on
-    puts (Date.today - applied_on).to_f
+    puts register_on
+    puts (Date.today - register_on).to_f
   end
   Contract.create(
     room_id: r.id, 
     customer_id: customer.id, 
     progress_id: progress.id, 
-    applied_on: applied_on
+    register_on: register_on
   )
 end
 

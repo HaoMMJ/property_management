@@ -3,19 +3,26 @@
 //var w = windowOpen(this,url,''); 
 //return false;"
 $(function () {
-  // $( "#add_customer_form" ).submit(function( event ) {
-  //   var info = objectifyForm($("form#add_customer_form input[type=text]"))
-  //   var data = {};
-  //   data["customer"] = info
-  //   $.post( "customer/create", data ).done(function(result){
-  //     console.log(result);
-  //     $("form#add_customer_form input[type=text]").val("");
-  //     $('#addNewModal').modal('toggle');
-  //     $('input[type="submit"], input[type="button"], button').disable(false);
-  //     location.reload();
-  //   });
-  //   event.preventDefault();
-  // });
+  $( "#add_contract_form" ).submit(function( event ) {
+    event.preventDefault();
+
+    var data = {};
+    data.room_id = $("#search_room").attr("data");
+    data.customer_id = $("#search_customer").attr("data");
+    
+    if(data.room_id && data.customer_id){
+      $.post( "contract/create", data ).done(function(result){
+        console.log(result);
+        if(result.message == "success"){
+          $('#addNewModal').modal('toggle');
+          location.reload();
+        }else{
+          alert("Co gi day sai sai!");
+        }
+        
+      });
+    }
+  });
 
   // $(".updateCustomer").click(function(){
   //   // console.log($(this));
