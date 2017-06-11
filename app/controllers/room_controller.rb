@@ -20,21 +20,16 @@ class RoomController < ApplicationController
   #   binding.pry
   # end
 
-  # def destroy
-  #   customer = Customer.find(params['id'].to_i)
-  #   if customer.present?
-  #     customer.is_deleted = true
-  #     customer.save
-  #   end
-  #   respond_to do |format|
-  #     format.json  { render json: {deleted: "success"} , status: 200 }
-  #   end
-
-  #   # respond_to do |format|
-  #   #   format.html {redirect_to customer_url(id: params[:id])}
-  #   #   format.js 
-  #   # end
-  # end
+  def destroy
+    room = Room.find(params['id'].to_i)
+    if room.present?
+      room.is_deleted = true
+      room.save
+    end
+    respond_to do |format|
+      format.json  { render json: {deleted: "success"} , status: 200 }
+    end
+  end
 
   # private
   # def customer_params
