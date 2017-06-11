@@ -1,6 +1,6 @@
 .row
   .col-sm-3.col-md-2.sidebar.search-form
-    = search_form_for @q do |f|
+    = search_form_for @q, :url => mini_search_room_path do |f|
       .form-group
         label for='building_name_cont' #{I18n.t('building_name')}
         = f.search_field :building_name_cont, class: 'form-control'
@@ -34,6 +34,7 @@
         | #{I18n.t('to')}
         = f.search_field :to_price, class: 'form-control'
       .form-group
+        = hidden_field_tag :opener_id, params["opener_id"]
         = f.submit "#{I18n.t('search')}", class: "btn btn-info"
   .col-sm-12.col-sm-offset-0.col-md-10.col-md-offset-2.main
     div
