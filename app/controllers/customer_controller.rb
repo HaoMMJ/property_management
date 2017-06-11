@@ -30,11 +30,6 @@ class CustomerController < ApplicationController
     respond_to do |format|
       format.json  { render json: {deleted: "success"} , status: 200 }
     end
-
-    # respond_to do |format|
-    #   format.html {redirect_to customer_url(id: params[:id])}
-    #   format.js 
-    # end
   end
 
   private

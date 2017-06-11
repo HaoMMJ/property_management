@@ -92,9 +92,9 @@ $(function () {
     });
   });
 
-  // $('.delete_customer').bind('ajax:success', function() {  
-  //   $(this).closest('tr').fadeOut();
-  // });  
+  $('.delete_contract').bind('ajax:success', function() {  
+    $(this).closest('tr').fadeOut();
+  });  
 
   $("#search_room").click(function(){
     console.log($(this));

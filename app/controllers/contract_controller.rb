@@ -53,4 +53,15 @@ class ContractController < ApplicationController
       format.json  { render json: {message: message} , status: 200 }
     end
   end
+
+  def destroy
+    contract = Contract.find(params['id'].to_i)
+    if contract.present?
+      contract.is_deleted = true
+      contract.save
+    end
+    respond_to do |format|
+      format.json  { render json: {deleted: "success"} , status: 200 }
+    end
+  end
 end
