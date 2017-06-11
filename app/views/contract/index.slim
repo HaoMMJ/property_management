@@ -18,7 +18,7 @@
       .form-group
         label for='progress' #{I18n.t('progress')}
         br
-        = f.collection_select :progress_id_eq, PaymentPeriod.all, :id, :name, class: 'form-control'  
+        = f.collection_select :progress_id_eq, PaymentPeriod.all, :id, :name, include_blank: true, class: 'form-control'  
       .form-group
         = f.submit "#{I18n.t('search')}", class: "btn btn-info"
   .col-sm-12.col-sm-offset-0.col-md-10.col-md-offset-2.main

@@ -7,8 +7,16 @@
         label for='name' #{I18n.t('name')}
         = f.search_field :name_cont, class: 'form-control'
       .form-group
+        label for='building_type_id' #{I18n.t('kind')}
+        br
+        = f.collection_select :building_type_id_eq, BuildingType.all, :id, :name, include_blank: true, class: 'form-control'   
+      .form-group
         label for='address' #{I18n.t('address')}
         = f.search_field :address_cont, class: 'form-control'
+      .form-group
+        label for='building_status' #{I18n.t('status')}
+        br
+        = f.collection_select :building_status_eq, ["Hoàn thành", "Đang xây dựng"], :to_s, :to_s, include_blank: true, class: 'form-control'  
       .form-group
         = f.submit "#{I18n.t('search')}", class: "btn btn-info"
   .col-sm-12.col-sm-offset-0.col-md-10.col-md-offset-2.main

@@ -4,7 +4,28 @@
   .col-sm-3.col-md-2.sidebar.search-form
     = search_form_for @q do |f|
       .form-group
+        label for='room_no' #{I18n.t('building_name')}
+        = f.search_field :room_no_cont, class: 'form-control'
+      .form-group
+        label for='room_no' #{I18n.t('kind')}
+        = f.search_field :room_no_cont, class: 'form-control'
+      .form-group
+        label for='room_no' #{I18n.t('address')}
+        = f.search_field :room_no_cont, class: 'form-control'
+      .form-group
         label for='room_no' #{I18n.t('room_no')}
+        = f.search_field :room_no_cont, class: 'form-control'
+      .form-group
+        label for='room_no' #{I18n.t('room_status')}
+        = f.search_field :room_no_cont, class: 'form-control'
+      .form-group
+        label for='room_no' #{I18n.t('state')}
+        = f.search_field :room_no_cont, class: 'form-control'
+      .form-group
+        label for='room_no' #{I18n.t('space')}
+        = f.search_field :room_no_cont, class: 'form-control'
+      .form-group
+        label for='room_no' #{I18n.t('price')}
         = f.search_field :room_no_cont, class: 'form-control'
       .form-group
         = f.submit "#{I18n.t('search')}", class: "btn btn-info"
@@ -35,6 +56,8 @@
         thead
           tr
             th #{I18n.t('building_name')}
+            th #{I18n.t('kind')}
+            th #{I18n.t('address')}
             th #{I18n.t('room_no')}
             th #{I18n.t('room_status')}
             th #{I18n.t('state')}
@@ -49,13 +72,16 @@
         tbody
           - if @rooms.length > 0
             - @rooms.each do |r|
+              - layout_info = "#{r.layout.number_of_bedrooms} #{I18n.t('bedroom')}, #{r.layout.number_of_wc} #{I18n.t('wc')}, #{r.layout.number_of_living_rooms} #{I18n.t('living_room')}, #{r.layout.number_of_kitchens} #{I18n.t('kitchen')}, #{r.layout.number_of_dinning_rooms} #{I18n.t('dinning_room')}"
               tr
                 td #{r.building.name}
+                td #{r.building.building_type.name}
+                td #{r.building.address}
                 td #{r.room_no}
                 td #{r.room_status}
                 td #{r.state}
                 td #{r.lighting_direction.name}
-                td #{r.layout.id}
+                td #{layout_info}
                 td #{r.floor}
                 td #{r.space.to_i}
                 td #{r.available_on}

@@ -101,7 +101,7 @@ room_states = ["#{I18n.t('available')}", "#{I18n.t('applied')}" ,"#{I18n.t('sold
 room_index = 1
 
 #Create Random data
-1.upto(21) do |i|
+0.upto(21) do |i|
   district = District.offset(rand(District.count)).first
   built_on = Date.today - rand(120..1000).days
   group = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -159,7 +159,7 @@ room_index = 1
         state: state,
         lighting_direction_id: LightingDirection.offset(rand(LightingDirection.count)).first.id,
         layout_id: Layout.offset(rand(Layout.count)).first.id,
-        floor: (j/(num_rooms/num_floors)) + 1,
+        floor: ((j+1)/(num_rooms/num_floors)) + 1,
         space: space,
         available_on: open_at + rand(-5..5).days,
         opened_at: open_at, 
