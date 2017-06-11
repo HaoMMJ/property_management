@@ -7,7 +7,6 @@ class CustomerController < ApplicationController
 
   def create
     customer = Customer.new(customer_params)
-    binding.pry
     customer.save! if customer.valid?
     respond_to do |format|
       format.json  { render json: {} , status: 200 }

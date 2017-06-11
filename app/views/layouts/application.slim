@@ -12,11 +12,11 @@ html
         = navbar_header brand: "#{I18n.t('property_management')}", brand_link: '/#'
         = navbar_collapse do
           = navbar_group class: 'foo', id: 'menu' do
-            = navbar_item "#{I18n.t('statistic')}", '/'
+            /= navbar_item "#{I18n.t('statistic')}", '/'
+            = navbar_item "#{I18n.t('contract')}", '/contract'
             = navbar_dropdown "#{I18n.t('property')}" do
               = navbar_item "#{I18n.t('building')}", '/buildings'
               = navbar_item "#{I18n.t('room')}", '/rooms'
-            = navbar_item "#{I18n.t('contract')}", '/contract'
             = navbar_item "#{I18n.t('customer')}", '/customers'
           = navbar_group align: 'right' do
             li

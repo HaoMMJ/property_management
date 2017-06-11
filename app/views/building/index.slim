@@ -9,14 +9,14 @@
       .form-group
         label for='building_type_id' #{I18n.t('kind')}
         br
-        = f.collection_select :building_type_id_eq, BuildingType.all, :id, :name, include_blank: true, class: 'form-control'   
+        = f.collection_select :building_type_id_eq, BuildingType.all, :id, :name, {include_blank: true}, {class: 'form-control'}   
       .form-group
         label for='address' #{I18n.t('address')}
         = f.search_field :address_cont, class: 'form-control'
       .form-group
         label for='building_status' #{I18n.t('status')}
         br
-        = f.collection_select :building_status_eq, ["Hoàn thành", "Đang xây dựng"], :to_s, :to_s, include_blank: true, class: 'form-control'  
+        = f.collection_select :building_status_eq, ["Hoàn thành", "Đang xây dựng"], :to_s, :to_s, {include_blank: true}, {class: 'form-control'}  
       .form-group
         = f.submit "#{I18n.t('search')}", class: "btn btn-info"
   .col-sm-12.col-sm-offset-0.col-md-10.col-md-offset-2.main
@@ -35,22 +35,22 @@
                 = text_field_tag(:name, nil, class: 'form-control')
               .form-group
                 label for='building_type_id' #{I18n.t('kind')}
-                = text_field_tag(:building_type_id, nil, class: 'form-control')
-              .form-group
-                label for='city_id' #{I18n.t('city')}
-                = text_field_tag(:city_id, nil, class: 'form-control')
-              .form-group
-                label for='district_id' #{I18n.t('district')}
-                = text_field_tag(:district_id, nil, class: 'form-control') 
+                = select_tag "building_type_id", options_from_collection_for_select(BuildingType.all, "id", "name"), include_blank: false, class: 'form-control'
               .form-group
                 label for='address' #{I18n.t('address')}
                 = text_field_tag(:address, nil, class: 'form-control')
               .form-group
-                label for='building_status' #{I18n.t('building_status')}
-                = text_field_tag(:building_status, nil, class: 'form-control')
+                label for='built_on' #{I18n.t('built_on')}
+                = text_field_tag(:built_on, nil, {class: 'form-control', "data-provide" => 'datepicker', "data-date-format"=>"yyyy/mm/dd"})
               .form-group
-                label for='payment_plan' #{I18n.t('payment_plan')}
-                = text_field_tag(:payment_plan, nil, class: 'form-control')
+                label for='building_status' #{I18n.t('building_status')}
+                = select_tag "building_status", options_for_select(["Hoàn thành", "Đang xây dựng"], "Đang xây dựng"), class: 'form-control'
+              .form-group
+                label for='num_floors' #{I18n.t('num_floors')}
+                = text_field_tag(:num_floors, nil, class: 'form-control')
+              .form-group
+                label for='payment_plan_id' #{I18n.t('payment_plan')}
+                = select_tag "payment_plan_id", options_from_collection_for_select(PaymentPlan.all, "id", "name"), include_blank: false, class: 'form-control'
             .modal-footer
               = submit_tag "#{I18n.t('add')}", class: 'btn btn-info'
               button.btn.btn-default data-dismiss="modal" #{I18n.t('close')}

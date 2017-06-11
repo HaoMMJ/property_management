@@ -33,7 +33,7 @@
                 = text_field_tag(:name, nil, class: 'form-control')
               .form-group
                 label for='birthday' #{I18n.t('birthday')}
-                = text_field_tag(:birthday, nil, {class: 'form-control', "data-provide" => 'datepicker'})
+                = text_field_tag(:birthday, nil, {class: 'form-control', "data-provide" => 'datepicker', "data-date-format"=>"yyyy/mm/dd"})
               .form-group
                 label for='birth_place' #{I18n.t('birth_place')}
                 = text_field_tag(:birth_place, nil, class: 'form-control')
@@ -45,7 +45,7 @@
                 = text_field_tag(:issued_by, nil, class: 'form-control')
               .form-group
                 label for='issued_on' #{I18n.t('issued_on')}
-                = text_field_tag(:issued_on, nil, {class: 'form-control', "data-provide" => 'datepicker'})
+                = text_field_tag(:issued_on, nil, {class: 'form-control', "data-provide" => 'datepicker', "data-date-format"=>"yyyy/mm/dd"})
               .form-group
                 label for='tel' #{I18n.t('tel')}
                 = text_field_tag(:tel, nil, class: 'form-control')

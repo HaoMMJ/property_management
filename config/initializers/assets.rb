@@ -13,3 +13,5 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( login.css )
 Rails.application.config.assets.precompile += %w( customer.js )
 Rails.application.config.assets.precompile += %w( contract.js )
+Rails.application.config.assets.precompile += %w( building.js )
+Rails.application.config.assets.precompile += %w( room.js )

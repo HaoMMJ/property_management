@@ -5,13 +5,13 @@ class BuildingController < ApplicationController
     @buildings = @q.result.paginate(:page => page, :per_page => 20)
   end
 
-  # def create
-  #   customer = Customer.new(customer_params)
-  #   customer.save! if customer.valid?
-  #   respond_to do |format|
-  #     format.json  { render json: {} , status: 200 }
-  #   end
-  # end
+  def create
+    building = Building.new(building_params)
+    building.save! if building.valid?
+    respond_to do |format|
+      format.json  { render json: {} , status: 200 }
+    end
+  end
 
   # def show
   # end
@@ -36,8 +36,8 @@ class BuildingController < ApplicationController
   #   # end
   # end
 
-  # private
-  # def customer_params
-  #   params.require(:customer).permit(:name, :birthday, :birth_place, :id_card, :issued_by, :issued_on, :tel, :address, :email)
-  # end
+  private
+  def building_params
+    params.require(:building).permit(:name, :building_type_id, :address, :built_on, :building_status, :num_floors, :payment_plan_id)
+  end
 end
