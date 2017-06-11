@@ -115,10 +115,52 @@
                 td #{r.opened_at}
                 td #{r.price}
                 td
-                  button.updateBuidling.btn.btn-info room-id="#{r.id}" #{I18n.t('detail')}
+                  button.updateRoom.btn.btn-info room-id="#{r.id}" #{I18n.t('detail')}
 
                   = link_to room_path(r.id), remote: true, method: :delete,  data: { confirm: 'Are you sure?' }, class: 'delete_room' do
                     button.btn.btn-secondary #{I18n.t('delete')}
           - else
             tr
               td.centered colspan=7 #{I18n.t('not_found')}
+
+  #updateModal.modal.fade role='dialog'
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close data-dismiss="modal" &times;
+          h4.modal-title #{I18n.t('update_room')}
+        .modal-body
+          .form-group
+            label for='building_id' #{I18n.t('building')}
+            = select_tag "building_id", options_from_collection_for_select(Building.all, "id", "name"), include_blank: false, id: "update_building_id", class: 'form-control'
+          .form-group
+            label for='room_no' #{I18n.t('room_no')}
+            = text_field_tag(:room_no, nil, id: "update_room_no", class: 'form-control')
+          .form-group
+            label for='room_status' #{I18n.t('room_status')}
+            = select_tag "room_status", options_for_select(["Hoàn thành", "Đang xây dựng"], "Đang xây dựng"), id: "update_room_status", class: 'form-control'
+          .form-group
+            label for='lighting_direction_id' #{I18n.t('lighting_direction')}
+            = select_tag "lighting_direction_id", options_from_collection_for_select(LightingDirection.all, "id", "name"), include_blank: false, id: "update_lighting_direction_id", class: 'form-control'
+          .form-group
+            label for='layout_id' #{I18n.t('layout')}
+            = select_tag "layout_id", options_from_collection_for_select(Layout.all, "id", "short_name"), include_blank: false, id: 'update_layout_id', class: 'form-control'
+          .form-group
+            label for='floor' #{I18n.t('floor')}
+            = text_field_tag(:floor, nil, id: 'update_floor', class: 'form-control')
+          .form-group
+            label for='space' #{I18n.t('space')}
+            = text_field_tag(:space, nil, id: 'update_space', class: 'form-control')
+          .form-group
+            label for='available_on' #{I18n.t('available_on')}
+            = text_field_tag(:available_on, nil, {id: 'update_available_on', class: 'form-control', "data-provide" => 'datepicker', "data-date-format"=>"yyyy/mm/dd"})
+          .form-group
+            label for='opened_at' #{I18n.t('opened_at')}
+            = text_field_tag(:opened_at, nil, {id: 'update_opened_at', class: 'form-control', "data-provide" => 'datepicker', "data-date-format"=>"yyyy/mm/dd"})
+          .form-group
+            label for='price' #{I18n.t('price')}
+            = text_field_tag(:price, nil, id: 'update_price', class: 'form-control')
+        .modal-footer
+          = hidden_field_tag 'room_id'
+          button.save_update_room.btn.btn-info  #{I18n.t('update')}
+          button.btn.btn-default data-dismiss="modal" #{I18n.t('close')}

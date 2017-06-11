@@ -18,13 +18,16 @@ $(function () {
     $.get( "room/" + room_id ).done(function(result){
       console.log(result);
       var room = result.room;
-      $("#update_name").val(room.name);
-      $("#update_room_type_id").val(room.room_type_id);
-      $("#update_address").val(room.address);
-      $("#update_built_on").val(room.built_on);
+      $("#update_building_id").val(room.building_id);
+      $("#update_room_no").val(room.room_no);
       $("#update_room_status").val(room.room_status);
-      $("#update_num_floors").val(room.num_floors);
-      $("#update_payment_plan_id").val(room.payment_plan_id);
+      $("#update_lighting_direction_id").val(room.lighting_direction_id);
+      $("#update_layout_id").val(room.layout_id);
+      $("#update_floor").val(room.floor);
+      $("#update_space").val(room.space);
+      $("#update_available_on").val(room.available_on);
+      $("#update_opened_at").val(room.opened_at);
+      $("#update_price").val(room.price);
 
       $("#room_id").val(room_id);
       $('#updateModal').modal('toggle');

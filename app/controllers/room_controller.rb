@@ -14,12 +14,29 @@ class RoomController < ApplicationController
     end
   end
 
-  # def show
-  # end
+  def show
+    room = Room.find(params["id"])
+    respond_to do |format|
+      format.json { render :json => {
+          room: room.as_json,
+        }
+      }
+    end
+  end
 
-  # def update
-  #   binding.pry
-  # end
+  def update
+    room = Room.find(params["id"])
+    if room.present?
+      room.update(room_params)
+      message = "success"
+    else
+      message = "fail"
+    end
+
+    respond_to do |format|
+      format.json  { render json: {message: message} , status: 200 }
+    end
+  end
 
   def destroy
     room = Room.find(params['id'].to_i)
