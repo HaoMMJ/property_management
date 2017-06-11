@@ -159,7 +159,7 @@ room_index = 1
         state: state,
         lighting_direction_id: LightingDirection.offset(rand(LightingDirection.count)).first.id,
         layout_id: Layout.offset(rand(Layout.count)).first.id,
-        floor: (j/(num_rooms/num_floors)),
+        floor: (j/(num_rooms/num_floors)) + 1,
         space: space,
         available_on: open_at + rand(-5..5).days,
         opened_at: open_at, 
@@ -192,7 +192,7 @@ contracted_rooms.each do |r|
     issued_by: "CA TP #{district.city.name}",
     issued_on: birthday + 18.years + rand(1..365).days,
     tel: "0"+rand(100000000..1000000000).to_s,
-    occupation: ["cong chuc nha nuoc", "nhan vien van phong", "kinh doanh", "lao dong tu do"].sample,
+    occupation: ["công chức nhà nước", "nhân viên văn phòng", "kinh doanh", "lao động tự do"].sample,
     email: "email_#{index}@email.com"
   )
   index += 1

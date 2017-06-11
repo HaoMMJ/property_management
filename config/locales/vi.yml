@@ -97,5 +97,9 @@ vi:
   progress: "Tiến độ"
   add_contract: "Thêm hợp đồng"
   select: "Chọn"
+  update: "Cập nhật"
+  contract_detail: "Chi tiết hợp đồng"
+  status: "Tình trạng"
+  occupation: "Nghề nghiệp"
 
   

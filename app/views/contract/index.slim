@@ -109,9 +109,86 @@
                 td #{customer.id_card}
                 td #{c.progress.payment_period.name} #{note}
                 td
-                  button.updateBuidling.btn.btn-info contract-id="#{c.id}" #{I18n.t('detail')}
+                  button.updateContract.btn.btn-info contract_id="#{c.id}" #{I18n.t('detail')}
                   = link_to contract_path(c.id), remote: true, method: :delete,  data: { confirm: 'Are you sure?' }, class: 'delete_contract' do
                     button.btn.btn-secondary #{I18n.t('delete')}
           - else
             tr
               td.centered colspan=7 #{I18n.t('not_found')}
+
+  #updateModal.modal.fade role='dialog'
+    .modal-dialog.contract-update-modal
+      .modal-content
+        .modal-header
+          button.close data-dismiss="modal" &times;
+          h4.modal-title #{I18n.t('contract_detail')}
+        .modal-body
+          .form-group
+            label for='room' #{I18n.t('building')}
+            table.table.table-bordered.table-striped.table-hover
+              thead
+                tr
+                  th #{I18n.t('name')}
+                  th #{I18n.t('kind')}
+                  th #{I18n.t('address')}
+                  th #{I18n.t('built_on')}
+                  th #{I18n.t('status')}
+                  th #{I18n.t('num_floors')}
+              tbody
+                tr
+                  td#building_name
+                  td#building_type
+                  td#building_address
+                  td#built_on
+                  td#building_status
+                  td#building_floors
+          .form-group
+            label for='room' #{I18n.t('room')}
+            table.table.table-bordered.table-striped.table-hover
+              thead
+                tr
+                  th #{I18n.t('room_no')}
+                  th #{I18n.t('status')}
+                  th #{I18n.t('lighting_direction')}
+                  th #{I18n.t('layout')}
+                  th #{I18n.t('floor')}
+                  th #{I18n.t('space')}
+                  th #{I18n.t('price')} VND
+              tbody
+                tr
+                  td#room_no
+                  td#room_status
+                  td#lighting_direction
+                  td#layout
+                  td#floor
+                  td#space
+                  td#price
+          .form-group
+            label for='customer' #{I18n.t('customer')}
+            table.table.table-bordered.table-striped.table-hover
+              thead
+                tr
+                  th #{I18n.t('name')}
+                  th #{I18n.t('birthday')}
+                  th #{I18n.t('id_card')}
+                  th #{I18n.t('address')}
+                  th #{I18n.t('tel')}
+                  th #{I18n.t('email')}
+                  th #{I18n.t('occupation')}
+              tbody
+                tr
+                  td#customer_name
+                  td#customer_birthday
+                  td#customer_id_card
+                  td#customer_address
+                  td#customer_tel
+                  td#customer_email
+                  td#customer_occupation
+          .form-group
+            label for='customer' #{I18n.t('progress')}
+            br
+            select#contract_progress
+        .modal-footer
+          = hidden_field_tag 'contract_id'
+          button.save_update_contract.btn.btn-info  #{I18n.t('update')}
+          button.btn.btn-default data-dismiss="modal" #{I18n.t('close')}
