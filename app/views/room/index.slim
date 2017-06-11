@@ -4,29 +4,37 @@
   .col-sm-3.col-md-2.sidebar.search-form
     = search_form_for @q do |f|
       .form-group
-        label for='room_no' #{I18n.t('building_name')}
-        = f.search_field :room_no_cont, class: 'form-control'
+        label for='by_building_name' #{I18n.t('building_name')}
+        = f.search_field :by_building_name, class: 'form-control'
       .form-group
-        label for='room_no' #{I18n.t('kind')}
-        = f.search_field :room_no_cont, class: 'form-control'
+        label for='by_building_type_id' #{I18n.t('kind')}
+        = f.collection_select :by_building_type_id, BuildingType.all, :id, :name, {include_blank: true}, {class: 'form-control'}
       .form-group
-        label for='room_no' #{I18n.t('address')}
-        = f.search_field :room_no_cont, class: 'form-control'
+        label for='by_building_address' #{I18n.t('address')}
+        = f.search_field :by_building_address, class: 'form-control'
       .form-group
         label for='room_no' #{I18n.t('room_no')}
-        = f.search_field :room_no_cont, class: 'form-control'
+        = f.search_field :room_no_eq, class: 'form-control'
       .form-group
-        label for='room_no' #{I18n.t('room_status')}
-        = f.search_field :room_no_cont, class: 'form-control'
+        label for='room_status' #{I18n.t('room_status')}
+        = f.collection_select :room_status_eq, ["Hoàn thành", "Đang xây dựng"], :to_s, :to_s, {include_blank: true}, {class: 'form-control'}
       .form-group
-        label for='room_no' #{I18n.t('state')}
-        = f.search_field :room_no_cont, class: 'form-control'
+        label for='state' #{I18n.t('state')}
+        = f.collection_select :state_eq, ["đang thanh toán", "còn trống", "đã bán"], :to_s, :to_s, {include_blank: true}, {class: 'form-control'}
       .form-group
-        label for='room_no' #{I18n.t('space')}
-        = f.search_field :room_no_cont, class: 'form-control'
+        label for='space' #{I18n.t('space')}
+        br
+        | #{I18n.t('from')}
+        = f.search_field :from_space, class: 'form-control'
+        | #{I18n.t('to')}
+        = f.search_field :to_space, class: 'form-control'
       .form-group
-        label for='room_no' #{I18n.t('price')}
-        = f.search_field :room_no_cont, class: 'form-control'
+        label for='price' #{I18n.t('price')}
+        br
+        | #{I18n.t('from')}
+        = f.search_field :from_price, class: 'form-control'
+        | #{I18n.t('to')}
+        = f.search_field :to_price, class: 'form-control'
       .form-group
         = f.submit "#{I18n.t('search')}", class: "btn btn-info"
   .col-sm-12.col-sm-offset-0.col-md-10.col-md-offset-2.main
@@ -121,7 +129,7 @@
                     button.btn.btn-secondary #{I18n.t('delete')}
           - else
             tr
-              td.centered colspan=7 #{I18n.t('not_found')}
+              td.centered colspan=14 #{I18n.t('not_found')}
 
   #updateModal.modal.fade role='dialog'
     .modal-dialog

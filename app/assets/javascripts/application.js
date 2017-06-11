@@ -35,8 +35,8 @@ jQuery.fn.extend({
 
 function windowOpen(caller, url, name, options, tab){
   if (!options) {
-    var height = 620;
-    var width = 1024;
+    var height = 1300;
+    var width = 1800;
     options = 'height=' + height + ',width=' + width;
   }
   if (window.popup == false) {

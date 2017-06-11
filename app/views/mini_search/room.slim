@@ -1,11 +1,39 @@
 .row
   .col-sm-3.col-md-2.sidebar.search-form
-    = search_form_for @q, url: mini_search_room_path do |f|
+    = search_form_for @q do |f|
+      .form-group
+        label for='by_building_name' #{I18n.t('building_name')}
+        = f.search_field :by_building_name, class: 'form-control'
+      .form-group
+        label for='by_building_type_id' #{I18n.t('kind')}
+        = f.collection_select :by_building_type_id, BuildingType.all, :id, :name, {include_blank: true}, {class: 'form-control'}
+      .form-group
+        label for='by_building_address' #{I18n.t('address')}
+        = f.search_field :by_building_address, class: 'form-control'
       .form-group
         label for='room_no' #{I18n.t('room_no')}
-        = f.search_field :room_no_cont, class: 'form-control'
+        = f.search_field :room_no_eq, class: 'form-control'
       .form-group
-        = hidden_field_tag :opener_id, params["opener_id"]
+        label for='room_status' #{I18n.t('room_status')}
+        = f.collection_select :room_status_eq, ["Hoàn thành", "Đang xây dựng"], :to_s, :to_s, {include_blank: true}, {class: 'form-control'}
+      .form-group
+        label for='state' #{I18n.t('state')}
+        = f.collection_select :state_eq, ["đang thanh toán", "còn trống", "đã bán"], :to_s, :to_s, {include_blank: true}, {class: 'form-control'}
+      .form-group
+        label for='space' #{I18n.t('space')}
+        br
+        | #{I18n.t('from')}
+        = f.search_field :from_space, class: 'form-control'
+        | #{I18n.t('to')}
+        = f.search_field :to_space, class: 'form-control'
+      .form-group
+        label for='price' #{I18n.t('price')}
+        br
+        | #{I18n.t('from')}
+        = f.search_field :from_price, class: 'form-control'
+        | #{I18n.t('to')}
+        = f.search_field :to_price, class: 'form-control'
+      .form-group
         = f.submit "#{I18n.t('search')}", class: "btn btn-info"
   .col-sm-12.col-sm-offset-0.col-md-10.col-md-offset-2.main
     div
@@ -18,6 +46,8 @@
         thead
           tr
             th #{I18n.t('building_name')}
+            th #{I18n.t('kind')}
+            th #{I18n.t('address')}
             th #{I18n.t('room_no')}
             th #{I18n.t('room_status')}
             th #{I18n.t('state')}
@@ -28,19 +58,22 @@
             th #{I18n.t('available_on')}
             th #{I18n.t('opened_at')}
             th #{I18n.t('price')} VND
-            th
+            th style="width: 144px;"
         tbody
           - if @rooms.length > 0
             - @rooms.each do |r|
+              - layout_info = "#{r.layout.number_of_bedrooms} #{I18n.t('bedroom')}, #{r.layout.number_of_wc} #{I18n.t('wc')}, #{r.layout.number_of_living_rooms} #{I18n.t('living_room')}, #{r.layout.number_of_kitchens} #{I18n.t('kitchen')}, #{r.layout.number_of_dinning_rooms} #{I18n.t('dinning_room')}"
               tr
                 td #{r.building.name}
+                td #{r.building.building_type.name}
+                td #{r.building.address}
                 td #{r.room_no}
                 td #{r.room_status}
                 td #{r.state}
                 td #{r.lighting_direction.name}
-                td #{r.layout.id}
+                td #{layout_info}
                 td #{r.floor}
-                td #{r.space.to_i}
+                td #{r.space.to_i} &#13217;
                 td #{r.available_on}
                 td #{r.opened_at}
                 td #{r.price}
@@ -49,4 +82,6 @@
                   button.MiniSearchSelectButton.btn.btn-info items="#{items}" opener_id=params["opener_id"] #{I18n.t('select')}
           - else
             tr
-              td.centered colspan=7 #{I18n.t('not_found')}
+              td.centered colspan=14 #{I18n.t('not_found')}
+
+
